@@ -4,9 +4,9 @@ Simplify Events, Amplify Experiences with Zenvite.
 ## Team Members
 | Name                | Roll Number   | Email                                   | Role                             |
 |---------------------|---------------|-----------------------------------------|----------------------------------|
-| Nabila Rahman       | 20220104001   | rahman.nabilamedha@gmail.com            | Lead, Backend                    |
+| Nabila Rahman       | 20220104001   | rahman.nabilamedha@gmail.com            | Lead                             |
 | Pranto Biswas       | 20220104018   | pb749964@gmail.com                      | Backend, Frontend                |
-| Hridoy Nandi        | 20220104019   |                                         | Backend, Frontend                |
+| Hridoy Nandi        | 20220104019   |  hrkisdead01221@gmail.com               | Backend, Frontend                |
 | Khairun Nahar Shila | 20220104020   | kamrunhasan12@gmail.com                 | Front-end Developer              |
 
 ## Project Overview
@@ -36,6 +36,7 @@ ZENVITE is designed for:
 - **Event Planners and Agencies:** Professionals seeking a scalable solution to manage multiple events simultaneously.
 
 ## User Interface
+# [Figma Link](https://www.figma.com/proto/4cvwCfQtVXDBs8UPXfjA7k/Zenvite?node-id=51-663&p=f&t=793CIkKft9fh1rq4-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
 - **Home Page:**
 The home page displays upcoming events with an integrated search option. Users can search by event name and location. 
 

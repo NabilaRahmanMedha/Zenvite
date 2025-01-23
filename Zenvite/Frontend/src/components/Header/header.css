@@ -1,0 +1,111 @@
+.header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7), /* Solid black at the top */
+        rgba(0, 0, 0, 0.3), /* Fading to transparent */
+        transparent
+    );
+    backdrop-filter: blur(10px); /* Blur effect */
+    position: sticky; /* Sticks to the top of the page on scroll */
+    top: 0;
+    z-index: 1000; /* Ensures the header stays above other elements */
+}
+
+.logo {
+    flex: 1; /* Left-aligned logo */
+}
+
+.logo img {
+    width: 150px; /* Adjust logo size as needed */
+}
+
+.navigation {
+    flex: 2; /* Center-aligned menu */
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 4rem; /* Adjust spacing between menu items */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav__item a {
+    text-decoration: none;
+    color: var(--heading-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.nav__item a:hover {
+    color: var(--secondary-color);
+}
+
+.nav__item a.active__link {
+    color: var(--secondary-color);
+}
+
+.nav__right {
+    flex: 1; /* Right-aligned buttons */
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+}
+
+.nav__btns .btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.nav__btns .btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav__btns .primary__btn {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+.nav__btns .primary__btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.nav__btns .secondary__btn {
+    background-color: var(--secondary-color);
+    border: none;
+}
+
+.nav__btns .secondary__btn:hover {
+    background-color: var(--primary-color);
+}
+
+.mobile__menu {
+    font-size: 1.5rem;
+    color: var(--heading-color);
+    display: none; /* Only visible on mobile devices */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navigation {
+        display: none; /* Hide navigation on mobile */
+    }
+
+    .mobile__menu {
+        display: block; /* Show mobile menu icon */
+    }
+}

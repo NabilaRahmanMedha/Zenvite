@@ -10,12 +10,12 @@ const nav__links=[
     display: 'Home'
   },
   {
-    path: '/about',
-    display: 'About'
-  },
-  {
     path: '/events',
     display: 'Events'
+  },
+  {
+    path: '/about',
+    display: 'About'
   },
   
 ]

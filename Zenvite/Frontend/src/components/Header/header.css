@@ -7,15 +7,34 @@
     padding: 0 2rem;
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.7), /* Solid black at the top */
-        rgba(0, 0, 0, 0.3), /* Fading to transparent */
-        transparent
+        rgba(0, 0, 0, 1), /* Solid black at the top */
+        rgba(0, 0, 0, 0) /* Fades to transparent */
     );
-    backdrop-filter: blur(10px); /* Blur effect */
-    position: sticky; /* Sticks to the top of the page on scroll */
+    position: absolute; /* Allows the header to overlap the page content */
     top: 0;
-    z-index: 1000; /* Ensures the header stays above other elements */
+    left: 0;
+    z-index: 1000; /* Keeps it on top of other elements */
+    border: none; /* No unwanted borders */
+    box-shadow: none; /* No shadows */
 }
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container, .row, .col {
+    margin: 0;
+    padding: 0;
+}
+
+/* Adjust content below the header to blend */
+.page__content {
+    margin-top: 100px; /* Add space equal to header height to avoid overlap with text */
+    padding: 20px;
+    background: #f5f5f5; /* Page background color */
+}
+
 
 .logo {
     flex: 1; /* Left-aligned logo */
@@ -42,18 +61,18 @@
 
 .nav__item a {
     text-decoration: none;
-    color: var(--heading-color);
-    font-weight: 600;
+    color: var(--heading-color, white); /* Default to white if --heading-color isn't set */
+    font-weight: 500;
     font-size: 1.2rem;
     transition: color 0.3s;
 }
 
 .nav__item a:hover {
-    color: var(--secondary-color);
+    color: var(--secondary-color, #ff5722); /* Default fallback */
 }
 
 .nav__item a.active__link {
-    color: var(--secondary-color);
+    color: var(--secondary-color, #ff5722); /* Default fallback */
 }
 
 .nav__right {
@@ -76,26 +95,26 @@
 }
 
 .nav__btns .primary__btn {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color, #007bff); /* Default fallback */
     border: none;
 }
 
 .nav__btns .primary__btn:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color, #ff5722); /* Default fallback */
 }
 
 .nav__btns .secondary__btn {
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color, #ff5722); /* Default fallback */
     border: none;
 }
 
 .nav__btns .secondary__btn:hover {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color, #007bff); /* Default fallback */
 }
 
 .mobile__menu {
     font-size: 1.5rem;
-    color: var(--heading-color);
+    color: var(--heading-color, white);
     display: none; /* Only visible on mobile devices */
 }
 

@@ -12,6 +12,9 @@ import Subtitle from './../shared/Subtitle';
 import SearchBar from '../shared/SearchBar';
 import ServiceList from '../services/ServiceList';
 import FeaturedEventList from '../components/Featured-events/FeaturedEventList'
+import MasonryImagesGallery from '../components/Image-gallery/MasonryImagesGallery';
+
+import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 
 
 const Home = () => {
@@ -38,9 +41,9 @@ const Home = () => {
           </p>
         </div>
       </Col>
-
-
+      
     </Row>
+
   </Container>
 </section>
   {/* ============ hero section end =========== */}
@@ -83,6 +86,31 @@ const Home = () => {
   
 
   {/* ============features event section end ============*/}
+
+ 
+ {/* ============gallery section start============*/}
+  <section>
+      <Container>
+        <Row>
+          <Col lg='12'>
+            <h2 className="gallery__title">Flagship Events in Review</h2>
+            <h5 className="gallery__title2">We are proud to showcase the success of our previous flagship events</h5>
+          </Col>
+          <Col lg='12'>
+           <ErrorBoundary>
+
+              <MasonryImagesGallery/>  
+           </ErrorBoundary>
+           
+          </Col>
+        </Row>
+      </Container>
+    </section>
+
+{/* ============gallery section end============*/}
+
+
+   
   
  
 

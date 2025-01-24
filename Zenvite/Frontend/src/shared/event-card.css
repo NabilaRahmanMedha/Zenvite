@@ -31,22 +31,47 @@
     color: var(--secondary-color);
 }
 
-.event__date{
-    font-size: .9rem;
+
+.event__datetime {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+.event__date,
+.event__time {
+    font-size: 0.7rem;
     color: var(--text-color);
-    
+    font-weight: 200;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
+  
+.event__date i,
+.event__time i {
+    color:#fff ;
+    font-size: 0.9rem;
+}
+  
 
 .event__location{
     color: var(--heading-color);
-    font-weight: 500;
-    font-size: .9rem;
+    font-weight: 200;
+    font-size: .7rem;
+
     
 }
-
-.event__date i, 
 .event__location i{
-    font-size: 1rem;
+    color:#fff ;
+    font-size: 0.9rem;
+    padding-right: 0.3rem;
+
+}
+
+.event__date
+{
+    font-size: 0.7rem;
 }
 
 .event__title{
@@ -69,26 +94,32 @@
 
 .card__bottom h5{
     color: var(--secondary-color);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
 }
 
 .card__bottom h5 span{
     font-weight: 500;
     color: darkgray;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
+
 
 .booking__btn {
     background: var(--secondary-color) !important ;
     cursor: pointer;
     padding: 0.2rem 0.5rem !important;
+    height: 2rem;
+    width: 5rem;
+  
+
 }
 
 .booking__btn a {
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #fff;
+    text-align: center;
 }
 
 .booking__btn a:hover{

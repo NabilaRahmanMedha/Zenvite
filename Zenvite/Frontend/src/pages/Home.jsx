@@ -89,6 +89,7 @@ const Home = () => {
 
  
  {/* ============gallery section start============*/}
+ 
   <section>
       <Container>
         <Row>
@@ -108,6 +109,22 @@ const Home = () => {
     </section>
 
 {/* ============gallery section end============*/}
+{/* test comment */}
+
+<section>
+      <Container>
+        <Row>
+          <Col lg='12'>
+            <h2 className="gallery__title">Flagship Events in Review</h2>
+            <h5 className="gallery__title2">We are proud to showcase the success of our previous flagship events</h5>
+          </Col>
+          <Col lg='12'>
+           
+           
+          </Col>
+        </Row>
+      </Container>
+    </section>
 
 
    

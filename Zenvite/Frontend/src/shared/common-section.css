@@ -2,7 +2,7 @@
     position: relative; /* Ensures the gradient overlay aligns properly */
     background: url('../assets/images/your-background-image.jpg') no-repeat center center;
     background-size: cover;
-    height: 300px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,9 +29,21 @@
     z-index: 2; /* Ensures the text is above the gradient overlay */
     font-size: 3rem;
     color: #fff;
-    font-weight: 650;
+    font-weight: 570;
+    padding-top: 8rem;
 
  
 }
+
+.common__section-desc {
+    position: relative;
+    font-size: 1rem;
+    color: #fff;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    z-index: 2;
+    padding-top: 0.3rem;
+  }
+
 
 

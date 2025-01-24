@@ -89,6 +89,7 @@ const Home = () => {
 
  
  {/* ============gallery section start============*/}
+ {/* ============gallery section start============*/}
   <section>
       <Container>
         <Row>

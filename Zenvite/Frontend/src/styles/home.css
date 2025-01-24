@@ -35,8 +35,8 @@
 }
 
 .hero__content h1{
-    font-size: 4rem;
-    font-weight: 600;
+    font-size: 4.0rem;
+    font-weight: 650;
     margin-top: 1rem;
     margin-bottom: 2rem;
     color: var(--heading-color);
@@ -137,14 +137,18 @@
 }
 
 .gallery__title{
-    font-size: 2.3rem;
-    margin-bottom: 2.5rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
     margin-top: 1rem;
+    color: #fff;
+}
+.gallery__title2{
+    color: #fff;
 }
 
 .masonry__img {
-    transition: .3s;
-}
+    transition: 0.3s;
+  }
 
 .masonry__img:hover{
     transform: scale(1.1);

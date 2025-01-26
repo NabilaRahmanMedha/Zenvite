@@ -13,10 +13,9 @@ const events = [
     title: "Training Session 2.0",
     city: "Intercontinental, Dhaka",
     budget: 300,
-    address:'Somewhere',
     price: 200,
     maxGroupSize: 10,
-    desc: "this is the description",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quis deleniti, aperiam odio quae aspernatur quaerat temporibus adipisci incidunt eaque quidem veritatis quasi quia velit provident veniamnon vero repudiandae!",
 
     photo: eventImg01,
     featured: true,
@@ -32,7 +31,7 @@ const events = [
     address:'Somewhere',
     price: 2000,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quis deleniti, aperiam odio quae aspernatur quaerat temporibus adipisci incidunt eaque quidem veritatis quasi quia velit provident veniamnon vero repudiandae!",
 
     photo: eventImg02,
     featured: true,
@@ -47,7 +46,7 @@ const events = [
     address:'Somewhere',
     price: 500,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quis deleniti, aperiam odio quae aspernatur quaerat temporibus adipisci incidunt eaque quidem veritatis quasi quia velit provident veniamnon vero repudiandae!",
 
     photo: eventImg03,
     featured: true,
@@ -62,7 +61,7 @@ const events = [
     address:'Somewhere',
     price: 500,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quis deleniti, aperiam odio quae aspernatur quaerat temporibus adipisci incidunt eaque quidem veritatis quasi quia velit provident veniamnon vero repudiandae!",
   
     photo: eventImg04,
     featured: true,
@@ -77,7 +76,7 @@ const events = [
     address:'Somewhere',
     price: 200,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quis deleniti, aperiam odio quae aspernatur quaerat temporibus adipisci incidunt eaque quidem veritatis quasi quia velit provident veniamnon vero repudiandae!",
 
     photo: eventImg05,
     featured: false,
@@ -92,7 +91,7 @@ const events = [
     address:'Somewhere',
     price: 1000,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quis deleniti, aperiam odio quae aspernatur quaerat temporibus adipisci incidunt eaque quidem veritatis quasi quia velit provident veniamnon vero repudiandae!",
   
     photo: eventImg06,
     featured: false,
@@ -107,7 +106,7 @@ const events = [
     address:'Somewhere',
     price: 700,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quis deleniti, aperiam odio quae aspernatur quaerat temporibus adipisci incidunt eaque quidem veritatis quasi quia velit provident veniamnon vero repudiandae!",
    
     photo: eventImg07,
     featured: false,
@@ -122,7 +121,7 @@ const events = [
     address:'Somewhere',
     price: 2000,
     maxGroupSize: 8,
-    desc: "this is the description",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quis deleniti, aperiam odio quae aspernatur quaerat temporibus adipisci incidunt eaque quidem veritatis quasi quia velit provident veniamnon vero repudiandae!",
    
     photo: eventImg01,
     featured: false,

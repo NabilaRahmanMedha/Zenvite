@@ -21,7 +21,8 @@ const Events = () => {
   },[page]);
 
   return (<>
-    <CommonSection title={"Upcoming Events!"}/>
+    <CommonSection title={"Upcoming Events!"}
+    description="Explore the Universe of Events at Your Fingertips." />
     <section>
       <Container>
         <Row>

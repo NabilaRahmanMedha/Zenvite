@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Island+Moments&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
+
 :root {
   --primary-color: #dd8edd;
-  --secondary-color: #71278f;
+  --secondary-color: #9149ad;
   --heading-color: #ffffff;
   --text-color: #ffffff;
   --font-name: "Montserrat", sans-serif;
@@ -26,6 +27,7 @@ body {
 section {
   padding: 50px 0px;
   background: var(--bg);
+  
 }
 
 h1,

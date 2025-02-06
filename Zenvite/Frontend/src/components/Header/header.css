@@ -68,11 +68,11 @@ body {
 }
 
 .nav__item a:hover {
-    color: var(--secondary-color, #ff5722); /* Default fallback */
+    color: var(--primary-color); /* Default fallback */
 }
 
 .nav__item a.active__link {
-    color: var(--secondary-color, #ff5722); /* Default fallback */
+    color: var(--primary-color); /* Default fallback */
 }
 
 .nav__right {

@@ -109,8 +109,6 @@ const Home = () => {
     </section>
 
 {/* ============gallery section end============*/}
-{/* test comment */}
-
 
 
 

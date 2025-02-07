@@ -1,0 +1,90 @@
+/* Full-page centering */
+.add-event {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+}
+
+/* Form container */
+.form-container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    color: white;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Form elements */
+.form-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+    color: rgb(165, 161, 161);
+    opacity: 1; /* Ensures full white visibility */
+}
+
+.form-container input,
+.form-container textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    background-color: rgb(46, 39, 39);
+    border-bottom: 1px solid rgb(229, 231, 235);
+    color: aliceblue;
+
+    
+}
+.form-container input:focus,
+.form-container textarea:focus {
+    outline: none;
+    background-color: rgb(46, 39, 39);
+   color: white;
+}
+
+
+
+/* File input */
+input[type="file"] {
+    background: none;
+    color:rgb(165, 161, 161);
+}
+
+/* Submit Button */
+.form-container .submit-btn {
+    background:var(--secondary-color);
+ 
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container .submit-btn:hover {
+    background: rgb(141, 63, 141);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-container {
+        max-width: 90%;
+        padding: 1.5rem;
+    }
+}

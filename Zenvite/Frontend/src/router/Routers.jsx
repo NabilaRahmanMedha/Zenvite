@@ -8,6 +8,8 @@ import Register from '../pages/Register';
 import SearchResultList from '../pages/SearchResultList';
 import Login from '../pages/Login';
 import About from '../pages/About';
+import ThankYou from '../pages/ThankYou';
+import AddEvent from '../pages/AddEvent';
 
 
 
@@ -22,6 +24,10 @@ const Routers = () => {
         <Route path='/register' element={<Register/>}/>
         <Route path='/events/search' element={<SearchResultList/>}/>
         <Route path='/about' element={<About/>}/>
+        <Route path='/thank-you' element={<ThankYou/>}/>
+        <Route path='/add-events' element={<AddEvent/>}/>
+
+
 
     </Routes>
   )

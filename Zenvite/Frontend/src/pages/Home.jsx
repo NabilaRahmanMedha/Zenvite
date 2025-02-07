@@ -89,6 +89,7 @@ const Home = () => {
 
  
  {/* ============gallery section start============*/}
+ 
   <section>
       <Container>
         <Row>
@@ -108,7 +109,7 @@ const Home = () => {
     </section>
 
 {/* ============gallery section end============*/}
-{/*testing */}
+
 
 
    

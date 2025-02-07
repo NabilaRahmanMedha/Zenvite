@@ -15,6 +15,7 @@ const Booking = ({ event, avgRating }) => {
         phone:'',
         ticketnumber:1,
         transectionId:'',
+        email:'',
     })
 
     const handleChange = e =>{
@@ -47,6 +48,10 @@ const Booking = ({ event, avgRating }) => {
                 required onChange={handleChange}/>
             </FormGroup>
             <FormGroup>
+                <input type="text" placeholder="Email" id="email"
+                required onChange={handleChange}/>
+            </FormGroup>
+            <FormGroup>
                 <input type="number" placeholder="Phone" id="phone"
                 required onChange={handleChange}/>
             </FormGroup>
@@ -68,11 +73,17 @@ const Booking = ({ event, avgRating }) => {
                <h5 className="d-flex align-items-center gap-1">BDT {price} <i class="ri-close-line"></i> 1 person </h5>
                <span>BDT {price}</span>
             </ListGroupItem>
-            
+
+            <ListGroupItem className="border-0 px-0">
+               <h5>Ticket quantity</h5>
+               <span>{credentials.ticketnumber}</span>
+            </ListGroupItem>
+
             <ListGroupItem className="border-0 px-0 total">
                <h5>Total</h5>
                <span>BDT {totalAmount}</span>
             </ListGroupItem>
+            
         </ListGroup>
 
         <Button className="btn primary__btn w-100 mt-4" onClick={handleClick}>Book Now</Button>

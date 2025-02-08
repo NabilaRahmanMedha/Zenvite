@@ -3,8 +3,8 @@ import { Container, Row, Col, Form, FormGroup, Button } from 'reactstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/login.css';
 import { CommonSection } from '../shared/CommonSection';
-import registerImg from '../assets/images/register.png';
-import userIcon from '../assets/images/user.png';
+//import registerImg from '../assets/images/register.png';
+//import userIcon from '../assets/images/user.png';
 import { AuthContext } from '../context/AuthContext';
 
 const Register = () => {
@@ -45,7 +45,7 @@ const Register = () => {
       navigate('/login');
     } catch (err) {
       console.error('Error during registration:', err);
-      alert('An error occurred during registration. Please try again.');
+      alert('An error occurred during registration. Please Try again.');
     }
   };
   

@@ -1,66 +1,37 @@
+import { createContext, useReducer } from "react";
 
-import {createContext,useEffect,useReducer} from 'react';
-
-const initial_state = {
-    user:
-    localStorage.getItem('user')!==null
-    ?JSON.parse(localStorage.getItem('user'))
-    :null,
-    loading: false,
-    error:null
+// Define initial state
+const INITIAL_STATE = {
+  user: null,
+  isFetching: false,
+  error: false,
 };
 
-export const AuthContext = createContext(initial_state);
-
-const AuthReducer = (state,action)=>{
-    switch(action.type){
-        case "LOGIN_START":
-            return{
-                user:null,
-                loading: true,
-                error:null
-            }
-        case "LOGIN_SUCCESS" :
-            return{
-                user:action.payload,
-                loading: false,
-                error:null
-            }
-        case "LOGIN_FAILURE":
-            return{
-                user:null,
-                loading: false,
-                error:action.payload
-            }
-        case "REGISTER_SUCCESS":
-            return{
-                user:null,
-                loading: false,
-                error:null
-            }
-        case "LOGOUT":
-            return{
-                user:null,
-                loading: false,
-                error:null
-            }
-        default:
-        return state
-    }
+// Define reducer function
+const AuthReducer = (state, action) => {
+  switch (action.type) {
+    case "REGISTER_SUCCESS":
+      return {
+        ...state,
+        user: action.payload, // Store user info
+        isFetching: false,
+        error: false,
+      };
+    default:
+      return state;
+  }
 };
 
-export const AuthContextProvider = ({children})=>{
-    const [state,dispatch] = useReducer(AuthReducer,initial_state)
-    useEffect(()=>{
-        localStorage.setItem('user',JSON.stringify(state.user))
-    },[state.user])
+// Create AuthContext
+export const AuthContext = createContext(INITIAL_STATE);
 
-    return <AuthContext.Provider value={{
-        user:state.user,
-        loading:state.loading,
-        error:state.error,
-        dispatch,
-    }}>
-        {children}
+// Context Provider Component
+export const AuthContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
+
+  return (
+    <AuthContext.Provider value={{ user: state.user, dispatch }}>
+      {children}
     </AuthContext.Provider>
+  );
 };

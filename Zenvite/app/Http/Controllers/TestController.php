@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\TestService;
+//use App\Services\TestService;
 use Illuminate\Http\Request;
+use App\Models\Test;
 
 class TestController extends Controller
 {
-    private $testService;
+    /*private $testService;
 
     public function __construct(TestService $testService)
     {
@@ -18,5 +19,14 @@ class TestController extends Controller
     {
         $data = $this->testService->getTestHuman();
         return $data;
+    }*/
+    public function index()
+    {
+        $test= test::all();
+        $data=[
+            'status'=>200,
+            'test'=>$test
+        ];
+        return response()->json($data,200);
     }
 }

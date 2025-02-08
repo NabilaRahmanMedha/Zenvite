@@ -33,10 +33,10 @@ class RegisterController extends Controller
         ]);
 
         // Log the user in automatically
-        Auth::login($user);
+        //Auth::login($user);
 
         // Redirect to the dashboard or home page
-        return redirect('/dashboard')->with('success', 'Registration successful!');
+        //return redirect('/dashboard')->with('success', 'Registration successful!');
     }
 }
 

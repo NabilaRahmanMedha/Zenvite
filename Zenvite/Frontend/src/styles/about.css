@@ -1,0 +1,47 @@
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px;
+    text-align: left;
+  }
+  
+  .team-photo img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+  
+  .about-section {
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom: 40px;
+  }
+  
+  .about-section h2 {
+    font-size: 2rem;
+    color: #e6e4e5;
+    margin-bottom: 10px;
+  }
+  
+  .about-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #b6aeb3;
+  }
+
+  .about-section ul{
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #b6aeb3;
+    padding: 20px;
+  }
+  

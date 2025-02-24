@@ -28,12 +28,14 @@ const Login = () => {
     e.preventDefault();
     dispatch({type:'LOGIN_START'})
     try {
-      const res = await fetch('http://localhost:4000/api/v1/auth/login',{
+      const res = await fetch('http://127.0.0.1:8000/api/login', {
+
         method:'post',
         headers:{
           'content-type':'application/json'
         },
-        credentials: 'include',
+        //credentials: 'same-origin',
+
         body: JSON.stringify(credentials),
       })
       const result = await res.json();

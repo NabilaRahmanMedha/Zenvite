@@ -1,196 +1,78 @@
-# Laravel Simplified Version
+# Zenvite
+Simplify Events, Amplify Experiences with Zenvite.
 
-This is a simple boilerplate code for laravel without any fancy stuff. Most built-in middlewares and service provider have been removed from the app to make it as simple as possible.
+## Team Members
+| Name                | Roll Number   | Email                                   | Role                             |
+|---------------------|---------------|-----------------------------------------|----------------------------------|
+| Nabila Rahman       | 20220104001   | rahman.nabilamedha@gmail.com            | Lead                             |
+| Pranto Biswas       | 20220104018   | pb749964@gmail.com                      | Backend, Frontend                |
+| Hridoy Nandi        | 20220104019   |  hrkisdead01221@gmail.com               | Backend, Frontend                |
+| Khairun Nahar Shila | 20220104020   | kamrunhasan12@gmail.com                 | Front-end Developer              |
 
-## Getting started
+## Project Overview
+The Event Management Platform is a comprehensive solution for managing event ticket booking. It provides tools for attendee registration, schedule management, and ticket booking ensuring a seamless event experience for organizers and participants.
 
-1. Install PHP 8.0 and composer as illustrated in the [slide](https://docs.google.com/presentation/d/1ra9nCzrMlHrKyxoe_yezsgn8PJ6eG9Q3bztFZNrqhf0/edit?usp=sharing)
-2. Clone the repository
-3. Checkout to the branch `simple-api` using `git checkout simple-api`
-4. Install dependencies by running `composer install`
-5. Run `php artisan serve` to start the api server. 
-6. [optional] Copy the .env.example file as .env later on
+## Title
+Zenvite
 
-## Recommended extensions to use
+## Short Description
+ZENVITE is a platform to manage events with an admin panel for organizing and overseeing events, attendee registration, and ticketing. It also provides real-time updates to keep everyone informed.
 
-- https://marketplace.visualstudio.com/items?itemName=DEVSENSE.phptools-vscode
-- https://marketplace.visualstudio.com/items?itemName=DEVSENSE.composer-php-vscode 
+## Key Features
+- **Attendee Registration:**
+  - Easy sign-up and registration process.
+  - Automated email confirmations.
 
-## Project directory
+- **Schedule Management:**
+  - Create and manage event schedules.
+  - Provide real-time ticket updates to attendees.
 
-```
-api-backend/
-├── app/
-│   ├── Console/Kernel
-│   ├── Exceptions/Handler
-│   ├── Http/
-│   │   ├── Controllers/
-│   │   ├── Kernel
-│   ├── Models/
-│   ├── Providers/
-│   └── Services/
-├── bootstrap/
-├── config/
-├── database/
-│   ├── migrations/
-├── public/
+## Target Audience
+ZENVITE is designed for:
 
-```
+- **Event Organizers:** Individuals or teams responsible for planning, managing, and executing events who need a streamlined tool to handle registrations, schedules, and ticketing.
+- **Businesses and Organizations:** Companies hosting conferences, workshops, or other events requiring efficient event management/booking facilities.
+- **Attendees:** Participants looking for an easy-to-use platform to discover, register for, and stay updated about events.
+- **Event Planners and Agencies:** Professionals seeking a scalable solution to manage multiple events simultaneously.
 
-## Creating a controller
+## User Interface
+# [Figma Link](https://www.figma.com/proto/4cvwCfQtVXDBs8UPXfjA7k/Zenvite?node-id=51-663&p=f&t=793CIkKft9fh1rq4-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
+- **Home Page:**
+The home page displays upcoming events with an integrated search option. Users can search by event name and location. 
 
-```sh
-php artisan make:controller TestController
-```
 
-This will create a controller file in `app/Http/Controllers`.
+![Desktop - 1](https://github.com/user-attachments/assets/971e6305-7a4c-4e64-be6b-ea510c70a7fd)
 
-```php
-<?php
+- **Event Page:**
+Users can view additional event details, search for specific events, and book tickets.
 
-namespace App\Http\Controllers;
+![events](https://github.com/user-attachments/assets/3817c497-3435-413c-aef5-15f51c537868)
 
-use Illuminate\Http\Request;
+- **Login and Register Page:**
+With a simple user-friendly login and registration interface, users can easily create an account and enjoy its full benefit.
 
-class TestController extends Controller
-{
-    public function getTestHuman(Request $request)
-    {
-        return "This is a test human response from TestController";
-    }
- 
-}
-```
+![Register](https://github.com/user-attachments/assets/4dccd353-d4eb-42a3-b351-436d33145cdf)
 
-Now, we need to add this to our `routes/api.php` route. 
+## Checkpoints
 
-```php
-Route::get('/test', [TestController::class, 'getTestHuman']);
-```
+### Checkpoint 1
+- Design mock UI for landing pages and dashboard using Figma.
+- Implement home page frontend.
+- Implement events page frontend.
 
-Note that we only have 1 file in `routes` folder. The rest of the files were removed to make it easy to understand. 
+### Checkpoint 2
+- Implement user authentication (registration & login) frontend and backend.
+- Implement about us page frontend.
 
-Now, if we make a `GET` request to `http://localhost:8000/api/test`, the `getTestHuman()` function should be executed and we should see a response saying "This is a test human response from TestController"
+### Checkpoint 3
+- Implement booking features backend.
+- Finalize UI/UX with responsive design.
+- Merge backend and frontend.
+- Deploy the web application.
 
-Similarly, we can do POST/PUT/DELETE operations.
-
-What if we want to make a GET request with a route parameter? like this: `http://localhost:8000/api/test/120`. How can we obtain the value `120`?
-
-We do this with `$request->route('<route-param-key>')`
-
-```php
-class TestController extends Controller
-{
-    public function getTestHumanWithId(Request $request)
-    {
-        $id = $request->route('id');
-        return "This is a test human response from TestController with id: $id";
-    }
-}
-```
-
-```php
-Route::get('/test/{id}', [TestController::class, 'getTestHumanWithId']);
-```
-
-## Creating a service
-
-Controllers shouldn't deal with business logic. That's the job of the Services. To create a new service, make a folder called `Services` in `app/Services` and create a new file named `TestService.php`
-
-```php
-<?php
-
-namespace App\Services;
-
-class TestService
-{
-    public function getTestHuman()
-    {
-        return "Test human returned from TestService";
-    }
-}
-
-```
-
-Now, we need to use this service in our `TestController`. To do this, we can use dependency injection to inject this directly in the constructor.
-
-```php
-<?php
-
-namespace App\Http\Controllers;
-
-use App\Services\TestService;
-use Illuminate\Http\Request;
-
-class TestController extends Controller
-{
-    private $testService;
-
-    public function __construct(TestService $testService)
-    {
-        $this->testService = $testService;
-    }
-
-    public function getTestHuman(Request $request)
-    {
-        $data = $this->testService->getTestHuman();
-        return $data;
-    }
-}
-
-```
-
-## Creating a middleware
-
-To create a middleware, we can run the command: 
-
-```sh
-php artisan make:middleware TestMiddleware
-```
-This will create a `TestMiddleware` in `app/Http/Middleware`. Add the following code to it: 
-
-```php
-<?php
-
-namespace App\Http\Middleware;
-
-use Closure;
-use Illuminate\Http\Request;
-
-class TestMiddleware
-{
-    public function handle(Request $request, Closure $next)
-    {
-        if (!$request->input('token')) {
-            return response()->json([
-                'error' => 'Unauthorized access',
-                'message' => 'Invalid or missing token.',
-            ], 401);
-        }
-
-        return $next($request);
-    }
-}
-```
-Now, we need to tell Laravel, when this middleware should work. We do this in the `app/Http/Kernel.php` file. We can either attach it to the global middleware (`$middleware`) or as route middlewares (`$routeMiddleware`). 
-
-For this example, let's attach this as a route middleware:
-
-```php
-protected $routeMiddleware = [
-    'test.middleware' =>\App\Http\Middleware\TestMiddleware::class,
-];
- ```
-
-Now that you have registered the middleware in the $routeMiddleware array, you can apply it to specific routes by using its alias (test.middleware):
-
-```php
-Route::get('/test', [TestController::class, 'getTestHuman'])->middleware('test.middleware');
-```
-
-## Troubleshoot
-
-1. Sometimes, cached routes can cause issues if routes have changed but the cache hasn't been cleared. You can clear the route cache by running the following command: `php artisan route:clear`
-2. Display all available routes in your application: `php artisan route:list`
-3. `php artisan cache:clear`
-
+## Usage
+1. Access the platform through your browser at the specified address (e.g., `yet to be added`).
+2. Navigate through the platform to:
+   - Register attendees (users)
+   - Book tickets (users)
+   - Create and modify event schedules (admins)

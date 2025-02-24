@@ -24,29 +24,41 @@ const Login = () => {
     setCredentials(prev=>({ ...prev,[e.target.id]:e.target.value}));
   };
 
-  const handleClick = async  e=>{
+  const handleClick = async (e) => {
     e.preventDefault();
-    dispatch({type:'LOGIN_START'})
+    dispatch({ type: "LOGIN_START" });
+  
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/login', {
-
-        method:'post',
-        headers:{
-          'content-type':'application/json'
+      const res = await fetch("http://127.0.0.1:8000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        //credentials: 'same-origin',
-
         body: JSON.stringify(credentials),
-      })
+      });
+  
       const result = await res.json();
-      if(!res.ok)alert(result.message);
-      console.log(result.data);
-      dispatch({type:'LOGIN_SUCCESS',payload:result.data});
-      navigate('/')
+  
+      if (!res.ok) {
+        alert(result.message || "Login failed");
+        throw new Error(result.message || "Invalid login response");
+      }
+  
+      console.log("Login success:", result);
+  
+      if (!result.user || !result.token) {
+        throw new Error("Invalid response format from API");
+      }
+  
+      // Dispatch correctly formatted payload
+      dispatch({ type: "LOGIN_SUCCESS", payload: { user: result.user, token: result.token } });
+      navigate("/");
     } catch (err) {
-      dispatch({type:'LOGIN_FAILURE',payload:err.message});
+      console.error("Login error:", err.message);
+      dispatch({ type: "LOGIN_FAILURE", payload: err.message });
     }
-  }
+  };
+  
 
 
   return (

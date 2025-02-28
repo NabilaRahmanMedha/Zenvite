@@ -1,23 +1,33 @@
-import React from 'react';
+import React from "react";
 import { Card, CardBody } from "reactstrap";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 import "./event-card.css";
 
 const EventCard = ({ event }) => {
-  const { id, title, city, photo, price, date, time } = event;
+  const { id, eventName, address, poster, ticketPrice, date, time } = event;
+
+  // Ensure image URL is correct
+  const imageUrl = poster 
+    ? poster.startsWith("http") 
+      ? poster 
+      : `http://127.0.0.1:8000/storage/${poster}` // Adjust Laravel URL
+    : "/default-event.jpg"; // Default fallback
 
   return (
     <div className="event__card">
       <Card>
         <div className="event__img">
-          <img src={photo} alt="event__img" />
+          <img 
+            src={imageUrl} 
+            alt={eventName} 
+            onError={(e) => (e.target.src = "/default-event.jpg")} // Handle broken images
+          />
         </div>
 
         <CardBody>
           <div className="card__top d-flex align-items-center justify-content-between">
             <span className="event__location d-flex align-items-center">
-              <i className="ri-map-pin-line"></i>{city}
+              <i className="ri-map-pin-line"></i> {address}
             </span>
 
             <div className="event__datetime d-flex align-items-center">
@@ -31,12 +41,12 @@ const EventCard = ({ event }) => {
           </div>
 
           <h5 className="event__title">
-            <Link to={`/events/${id}`}>{title}</Link>
+            <Link to={`/events/${id}`}>{eventName}</Link>
           </h5>
 
           <div className="card__bottom d-flex align-items-center justify-content-between mt-3">
             <h5>
-              BDT {price}
+              BDT {ticketPrice}
               <span>/per person</span>
             </h5>
 

@@ -1,0 +1,56 @@
+/* Basic container styles */
+.registration-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+.registration-container h2 {
+    text-align: center;
+    font-size: 40px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+
+/* Table styling */
+.registration-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #444; /* Set table background to gray */
+}
+
+.registration-table th, .registration-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #fff; /* White border lines */
+    color: #fff; /* Set text color to white */
+}
+
+.registration-table th {
+    background-color: #555; /* Darker gray for the header */
+    font-weight: bold;
+}
+
+.registration-table td {
+    background-color: #444; /* Keep the table rows with the same background gray */
+}
+
+/* Hover effect on rows */
+.registration-table tr:hover {
+    background-color: #666; /* Lighter gray when hovering */
+}
+
+/* No data message */
+.no-data {
+    text-align: center;
+    font-size: 18px;
+    color: #ddd; /* Light gray color for the "No data" message */
+    padding: 20px 0;
+}

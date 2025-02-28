@@ -5,7 +5,7 @@ import logo from '../../assets/images/logo.png';
 import "../Header/header.css"; 
 
 const adminNavLinks = [
-  { path: '/admin', display: 'Dashboard' },
+  { path: '/admin/dashboard', display: 'Dashboard' },
   { path: '/admin/users', display: 'User Management' },
   { path: '/admin/events', display: 'Event Management' },
 ];

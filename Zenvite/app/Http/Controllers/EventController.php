@@ -60,6 +60,20 @@ class EventController extends Controller
 
         return response()->json($events, 200); 
     }
+    
+    public function show($id)
+    {
+        $event = Event::find($id);
+
+        if (!$event) {
+            return response()->json(['message' => 'Event not found'], 404);
+        }
+
+        // Append full URL for poster
+        $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
+
+        return response()->json(['event' => $event], 200);
+    }
 
 
 

@@ -10,6 +10,10 @@ import Login from '../pages/Login';
 import About from '../pages/About';
 import ThankYou from '../pages/ThankYou';
 import AddEvent from '../pages/AddEvent';
+import Dashboard from '../pages/admin/Dashboard';
+import UserManagement from '../pages/admin/UserManagement';
+import EventManagement from '../pages/admin/EventManagement';
+
 
 
 
@@ -26,6 +30,9 @@ const Routers = () => {
         <Route path='/about' element={<About/>}/>
         <Route path='/thank-you' element={<ThankYou/>}/>
         <Route path='/add-events' element={<AddEvent/>}/>
+        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/users" element={<UserManagement />} />
+        <Route path="/admin/events" element={<EventManagement />} />
 
 
 

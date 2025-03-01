@@ -18,5 +18,12 @@ class Event extends Model
         'description',
         'poster',
     ];
+
+    public function scopeSearch($query, $searchTerm)
+    {
+        return $query->where('eventName', 'like', "%{$searchTerm}%")
+                     ->orWhere('address', 'like', "%{$searchTerm}%");
+    }
+    
 }
 

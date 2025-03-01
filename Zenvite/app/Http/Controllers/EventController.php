@@ -42,6 +42,13 @@ class EventController extends Controller
     {
         $query = Event::query();
 
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where('eventName', 'LIKE', "%$search%")
+                  ->orWhere('address', 'LIKE', "%$search%");
+        }
+    
+
         if ($request->has('featured') && $request->featured == 'true') {
             // Fetch 8 random featured events
             $events = $query->inRandomOrder()->limit(8)->get();

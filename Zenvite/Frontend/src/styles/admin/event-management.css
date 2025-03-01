@@ -62,4 +62,20 @@
   .more-info-btn:hover {
     background-color: #683888;
   }
+
+  .delete-btn {
+    display: block;
+    text-align: center;
+    background-color: #e74c3c; /* Red background for delete */
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 10px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
+  }
+
+  .delete-btn:hover {
+      background-color: #af205e; /* Darker red for hover */
+  }
   

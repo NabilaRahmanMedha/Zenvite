@@ -55,7 +55,7 @@ const AddEvent = () => {
 
       if (response.status === 201) {
         alert("Event submitted successfully!");
-        navigate("/events");
+        navigate("/admin/dashboard");
       }
     } catch (error) {
       console.error("Error submitting event:", error);

@@ -1,0 +1,58 @@
+/* Container styles */
+.user-management {
+    padding: 120px 0;
+    background-color:black;
+    padding-top: 120px;
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #444; /* Dark gray background */
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #fff; /* White border lines */
+    color: #fff; /* White text */
+}
+
+.table th {
+    background-color: #555; /* Slightly darker gray for the header */
+    font-weight: bold;
+}
+
+.table td {
+    background-color: #444; /* Keep table rows dark gray */
+}
+
+/* Hover effect */
+.table tr:hover {
+    background-color: #666; /* Light gray when hovering */
+}
+
+/* Delete button styles */
+.delete-btn {
+    background-color: rgb(205, 38, 88);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: darkred;
+}
+
+/* Center text for no data message */
+.no-data {
+    text-align: center;
+    font-size: 18px;
+    color: #ddd; /* Light gray */
+    padding: 20px 0;
+}

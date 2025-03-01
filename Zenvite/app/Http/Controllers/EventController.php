@@ -42,24 +42,37 @@ class EventController extends Controller
     {
         $query = Event::query();
 
-        if ($request->has('featured')) {
-
+        if ($request->has('featured') && $request->featured == 'true') {
+            // Fetch 8 random featured events
             $events = $query->inRandomOrder()->limit(8)->get();
-
-            return response()->json(['events' => $events], 200); 
-        } else {
-
-            $events = $query->paginate(8);
+            foreach ($events as $event) {
+                $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
+            }
+            return response()->json(['events' => $events], 200);
         }
 
-  
-        foreach ($events as $event) {
+        if ($request->has('admin') && $request->admin == 'true') {
+            // Fetch all events for admin (no pagination)
+            $events = $query->get();
+            foreach ($events as $event) {
+                $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
+            }
+            return response()->json(['events' => $events], 200);
+        }
+
+        // Default: Paginated events for normal users
+        $events = $query->paginate(8);
+
+        // Convert poster paths to full URLs
+        $events->getCollection()->transform(function ($event) {
             $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
-        }
-        
+            return $event;
+        });
 
-        return response()->json($events, 200); 
+        return response()->json($events, 200);
     }
+
+
     
     public function show($id)
     {
@@ -75,6 +88,15 @@ class EventController extends Controller
         return response()->json(['event' => $event], 200);
     }
 
-
-
+    public function destroy($id)
+    {
+        $event = Event::find($id);
+        
+        if ($event) {
+            $event->delete();
+            return response()->json(['message' => 'Event deleted successfully.']);
+        }
+        
+        return response()->json(['message' => 'Event not found.'], 404);
+    }
 }

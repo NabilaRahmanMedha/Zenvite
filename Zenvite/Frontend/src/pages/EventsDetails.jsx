@@ -1,78 +1,89 @@
-import React,{useRef, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/event-details.css';
-import { Container, Row, Col, Form, ListGroup } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import { useParams } from 'react-router-dom';
-import eventData from '../assets/data/events';
-import calculateAvgRating from '../utils/avgRating';
-import avatar from '../assets/images/avatar.jpg';
+import axios from 'axios';
 import Booking from '../components/Booking/Booking';
-
 import { CommonSection } from '../shared/CommonSection';
 
 const EventsDetails = () => {
   const { id } = useParams();
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const reviewMsgRef = useRef('')
-  const [eventRating, setEventRating]=useState(null)
+  useEffect(() => {
+    const fetchEventDetails = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/events/${id}`);
+        setEvent(response.data.event);
+      } catch (err) {
+        setError("Failed to fetch event details.");
+        console.error("Error fetching event:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // this is static data; later we will call our API and load our data from the database
-  const event = eventData.find(event => event.id === id);
+    fetchEventDetails();
+  }, [id]);
 
-  // destructure properties from event object
-  const { photo, title, desc, price, address, reviews, city, budget, maxGroupSize } = event;
-
-  const { totalRating, avgRating } = calculateAvgRating(reviews);
-
-  // format date
-  const options = {day: "numeric", month: "long", year: "numeric"};
-
-  //submit request to the server
-
-  const submitHandler =e=>{
-    const reviewText =reviewMsgRef.current.value;
-
-    
-
-    //later will call our api
+  if (loading) {
+    return <p className="text-center">Loading event details...</p>;
   }
+
+  if (error) {
+    return <p className="text-center text-danger">{error}</p>;
+  }
+
+  if (!event) {
+    return <p className="text-center text-danger">Event not found.</p>;
+  }
+
+  const { eventName, description, ticketPrice, address, poster, date, time } = event;
 
   return (
     <>
-    <CommonSection title={title}/>
+      <CommonSection title={eventName} />
       <section>
         <Container>
           <Row>
             <Col lg="8">
               <div className="event__content">
-                <img src={photo} alt='' />
+                <img 
+                  src={poster ? poster : "/default-event.jpg"} 
+                  alt={eventName} 
+                  className="event__img"
+                  onError={(e) => (e.target.src = "/default-event.jpg")} 
+                />
 
                 <div className="event__info">
-                  <h2>{title}</h2>
+                  <h2>{eventName}</h2>
                   <div className="d-flex align-items-center gap-5">
-                    
-
                     <span>
-                    <i class="ri-map-pin-2-line"></i> {city}
+                      <i className="ri-map-pin-2-line"></i> {address}
                     </span>
                   </div>
                   <div className="event__extra-details">
-                    <span><i class="ri-currency-line"></i><h6>BDT {price} /per person</h6></span>
-                   
+                    <span>
+                      <i className="ri-calendar-line"></i> {date} | <i className="ri-time-line"></i> {time}
+                    </span>
+                    <span>
+                      <i className="ri-currency-line"></i> <h6>BDT {ticketPrice} / per person</h6>
+                    </span>
                   </div>
                   <h5>Description</h5>
-                  <p>{desc}</p>
+                  <p>{description}</p>
                 </div>
-                
               </div>
             </Col>
 
             <Col lg='4'>
-              <Booking event={event} avgRating={avgRating}/>
+              <Booking event={event} />
             </Col>
           </Row>
         </Container>
       </section>
-      
     </>
   );
 };

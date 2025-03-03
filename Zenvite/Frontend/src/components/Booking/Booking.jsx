@@ -8,7 +8,7 @@ const Booking = ({ event }) => {
   const { id, ticketPrice } = event;
   const navigate = useNavigate();
 
-  // Get user info from localStorage
+  //user info from localStorage
   const storedUser = JSON.parse(localStorage.getItem("user"));
 
   const [credentials, setCredentials] = useState({
@@ -19,7 +19,6 @@ const Booking = ({ event }) => {
     transactionId: "",
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     setCredentials((prev) => ({
       ...prev,
@@ -87,7 +86,7 @@ const Booking = ({ event }) => {
               required
               value={credentials.fullName}
               onChange={handleChange}
-              disabled={!!storedUser} // Disable if user is logged in
+              disabled={!!storedUser} 
             />
           </FormGroup>
           <FormGroup>
@@ -98,7 +97,7 @@ const Booking = ({ event }) => {
               required
               value={credentials.email}
               onChange={handleChange}
-              disabled={!!storedUser} // Disable if user is logged in
+              disabled={!!storedUser} 
             />
           </FormGroup>
           <FormGroup>

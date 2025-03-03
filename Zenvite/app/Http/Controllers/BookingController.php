@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\User;
+use App\Models\Event;
 
 class BookingController extends Controller
 {
@@ -22,7 +23,7 @@ class BookingController extends Controller
         ]);
 
         $booking = Booking::create([
-            'user_id' => $request->user_id, // Getting user_id from request instead of Auth
+            'user_id' => $request->user_id, 
             'event_id' => $request->event_id,
             'full_name' => $request->fullName,
             'email' => $request->email,
@@ -45,4 +46,25 @@ class BookingController extends Controller
         
         return response()->json(['bookings' => $bookings]);
     }
+
+    public function getEventRegistrations($event_id)
+{
+    $bookings = Booking::where('event_id', $event_id)
+        ->join('events', 'bookings.event_id', '=', 'events.id') 
+        ->select(
+            'bookings.id as booking_id', 
+            'bookings.user_id', 
+            'bookings.event_id', 
+            'events.eventName as event_name', 
+            'bookings.full_name', 
+            'bookings.email', 
+            'bookings.phone', 
+            'bookings.transaction_id', 
+            'bookings.ticket_number'
+        )
+        ->get();
+    
+    return response()->json(['bookings' => $bookings], 200);
+}
+
 }

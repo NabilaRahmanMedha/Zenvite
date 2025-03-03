@@ -2,9 +2,6 @@ import React from "react";
 import EventCard from "../shared/EventCard";
 import '../styles/search-resultlist.css';
 
-
-
-
 const SearchResultList = ({ results, searchPerformed }) => {
   if (searchPerformed && (!results || results.length === 0)) {
     return <div className="no-results">No events found.</div>;

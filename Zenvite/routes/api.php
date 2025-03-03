@@ -27,3 +27,6 @@ Route::delete('events/{id}', [EventController::class, 'destroy']);
 
 Route::post('/bookings', [BookingController::class, 'bookEvent']);
 Route::get('/my-bookings', [BookingController::class, 'userBookings']);
+
+
+Route::get('/event-registrations/{event_id}', [BookingController::class, 'getEventRegistrations']);

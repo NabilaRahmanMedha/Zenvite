@@ -6,12 +6,12 @@ import "./event-card.css";
 const EventCard = ({ event }) => {
   const { id, eventName, address, poster, ticketPrice, date, time } = event;
 
-  // Ensure image URL is correct
+  // ensures correct url
   const imageUrl = poster 
     ? poster.startsWith("http") 
       ? poster 
-      : `http://127.0.0.1:8000/storage/${poster}` // Adjust Laravel URL
-    : "/default-event.jpg"; // Default fallback
+      : `http://127.0.0.1:8000/storage/${poster}` 
+    : "/default-event.jpg";
 
   return (
     <div className="event__card">

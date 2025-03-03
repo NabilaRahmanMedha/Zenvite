@@ -16,6 +16,7 @@ import EventManagement from '../pages/admin/EventManagement';
 import EventRegistrationInfo from '../pages/admin/EventRegistrationInfo';
 import Profile from '../pages/Profile';
 
+
 const Routers = () => {
   return (
     <Routes>

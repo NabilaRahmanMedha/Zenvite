@@ -67,7 +67,7 @@ const Register = () => {
                       onChange={handleChange}
                     />
                   </FormGroup>
-
+                  
                   <FormGroup>
                     <input
                       type="email"

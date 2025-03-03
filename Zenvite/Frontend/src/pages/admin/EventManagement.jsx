@@ -11,8 +11,8 @@ const EventManagement = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/events?admin=true");
-        // Extract the correct array of events
-        setEvents(response.data.events || []); // Handle both possible formats
+        // Extracts the array of events
+        setEvents(response.data.events || []);
       } catch (error) {
         console.error("Error fetching events:", error);
       }
@@ -23,7 +23,7 @@ const EventManagement = () => {
 
   const deleteEvent = async (eventId) => {
     try {
-      // Send delete request to backend
+      //delete request to backend
       await axios.delete(`http://127.0.0.1:8000/api/events/${eventId}`);
       // Remove event from frontend state
       setEvents(events.filter((event) => event.id !== eventId));

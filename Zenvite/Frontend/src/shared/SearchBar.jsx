@@ -23,7 +23,7 @@ const SearchBar = () => {
     }
 
     setLoading(true);
-    setSearchPerformed(true); // Mark that search has been performed
+    setSearchPerformed(true); 
 
     try {
       const response = await axios.get('http://127.0.0.1:8000/api/events', {
@@ -67,7 +67,7 @@ const SearchBar = () => {
 
       {loading && <div>Loading...</div>}
       
-      {/* Display Search Results only if search has been performed */}
+      {/* Display Search Results only when performed */}
       <SearchResultList results={searchResults} searchPerformed={searchPerformed} />
     </Col>
   );

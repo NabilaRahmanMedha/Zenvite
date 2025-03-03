@@ -46,7 +46,6 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        // Generate Sanctum token
         $token = $user->createToken('authToken')->plainTextToken;
 
         return response()->json([
@@ -55,6 +54,7 @@ class AuthController extends Controller
             'user' => $user
         ]);
     }
+    
     // User Logout
     public function logout(Request $request)
     {

@@ -1,10 +1,10 @@
--- Create database if it doesn't exist
+-- Create database 
 CREATE DATABASE IF NOT EXISTS `zenvite` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- Drop the existing 'users' table if it exists
 DROP TABLE IF EXISTS `users`;
 
--- Create 'users' table as per the migration
+-- Create 'users' table 
 CREATE TABLE IF NOT EXISTS `users` (
     `id` BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL,
@@ -14,10 +14,10 @@ CREATE TABLE IF NOT EXISTS `users` (
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Drop the existing 'events' table if it exists
+-- Drop the existing 'events' 
 DROP TABLE IF EXISTS `events`;
 
--- Create 'events' table as per the migration
+-- Create 'events' table 
 CREATE TABLE IF NOT EXISTS `events` (
     `id` BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `eventName` VARCHAR(255) NOT NULL,
@@ -31,10 +31,10 @@ CREATE TABLE IF NOT EXISTS `events` (
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Drop the existing 'personal_access_tokens' table if it exists
+-- Drop the existing 'personal_access_tokens' table 
 DROP TABLE IF EXISTS `personal_access_tokens`;
 
--- Create 'personal_access_tokens' table as per the previous migration
+-- Create 'personal_access_tokens' table 
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
     `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
     `tokenable_type` VARCHAR(255) NOT NULL,
@@ -48,6 +48,3 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
     INDEX(`tokenable_type`, `tokenable_id`)
 );
 
--- Optional: Add foreign key constraint for `tokenable` if using polymorphic relationships (like with 'users')
--- ALTER TABLE `personal_access_tokens` 
--- ADD CONSTRAINT `fk_tokenable_users` FOREIGN KEY (`tokenable_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;

@@ -70,7 +70,7 @@ class EventController extends Controller
         // Default: Paginated events for normal users
         $events = $query->paginate(8);
 
-        // Convert poster paths to full URLs
+        
         $events->getCollection()->transform(function ($event) {
             $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
             return $event;
@@ -89,7 +89,7 @@ class EventController extends Controller
             return response()->json(['message' => 'Event not found'], 404);
         }
 
-        // Append full URL for poster
+        
         $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
 
         return response()->json(['event' => $event], 200);

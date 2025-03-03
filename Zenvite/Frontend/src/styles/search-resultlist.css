@@ -1,0 +1,28 @@
+.search-results {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 10px;
+  }
+  
+  .search-results h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    padding: 50px;
+  }
+  
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+  }
+  
+  .no-results {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    margin-top: 20px;
+  }

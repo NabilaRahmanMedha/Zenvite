@@ -1,5 +1,8 @@
 import React from "react";
 import EventCard from "../shared/EventCard";
+import '../styles/search-resultlist.css';
+
+
 
 
 const SearchResultList = ({ results, searchPerformed }) => {

@@ -12,12 +12,8 @@ const nav__links = [
 ];
 
 const Header = () => {
-  const { user, dispatch } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' });
-  };
 
   return (
     <header className='header'>
@@ -46,12 +42,12 @@ const Header = () => {
               </ul>
             </div>
 
-            {/* ========== Right Side (Login/Logout Buttons) ========= */}
+            {/* ========== Right Side (Login/Profile Buttons) ========= */}
             <div className="nav__right d-flex align-items-center gap-4">
               <div className="nav__btns d-flex align-items-center gap-4">
                 {user ? (
-                  <Button className="btn secondary__btn" onClick={handleLogout}>
-                    <Link to='/login'>Logout</Link>
+                  <Button className="btn secondary__btn">
+                    <Link to='/profile'>Profile</Link>
                   </Button>
                 ) : (
                   <>

@@ -13,7 +13,7 @@ import AddEvent from '../pages/AddEvent';
 import Dashboard from '../pages/admin/Dashboard';
 import UserManagement from '../pages/admin/UserManagement';
 import EventManagement from '../pages/admin/EventManagement';
-import EventRegistrationInfo from '../pages/admin/EventRegistrationInfo'; // Import the new page
+import EventRegistrationInfo from '../pages/admin/EventRegistrationInfo'; 
 
 const Routers = () => {
   return (
@@ -34,7 +34,7 @@ const Routers = () => {
       <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/users" element={<UserManagement />} />
       <Route path="/admin/events" element={<EventManagement />} />
-      <Route path="/admin/event/:id/registrations" element={<EventRegistrationInfo />} /> {/* New Route */}
+      <Route path="/admin/event/:id/registrations" element={<EventRegistrationInfo />} /> 
     </Routes>
   );
 };

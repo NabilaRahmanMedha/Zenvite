@@ -59,7 +59,7 @@ class EventController extends Controller
         }
 
         if ($request->has('admin') && $request->admin == 'true') {
-            // Fetch all events for admin (no pagination)
+            // Fetch all events for admin 
             $events = $query->get();
             foreach ($events as $event) {
                 $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');

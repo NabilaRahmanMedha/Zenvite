@@ -50,7 +50,7 @@ const Login = () => {
         throw new Error("Invalid response format from API");
       }
   
-      // Dispatch correctly formatted payload
+      // Dispatch formatted payload
       dispatch({ type: "LOGIN_SUCCESS", payload: { user: result.user, token: result.token } });
       navigate("/");
     } catch (err) {
@@ -58,8 +58,6 @@ const Login = () => {
       dispatch({ type: "LOGIN_FAILURE", payload: err.message });
     }
   };
-  
-
 
   return (
     <>
@@ -68,12 +66,7 @@ const Login = () => {
       <Container>
         <Row>
           <Col lg='8' className="m-auto">
-         
-            
-
             <div className='login__form'>
-              
-
               <Form onSubmit={handleClick}>
                 <FormGroup>
                   <input type="email" placeholder="Email" required id="email" 
@@ -82,19 +75,13 @@ const Login = () => {
                 <FormGroup>
                   <input type="password" placeholder="Password" required id="password" 
                   onChange={handleChange}/>
-                </FormGroup>
-                
+                </FormGroup> 
                 <Button className="auth__btn" type="submit">Login</Button>
-                
-                
               </Form>
               <p>Don't have an account?<Link to='/register'>Create</Link></p>
             </div>
-
-           
           </Col>
         </Row>
-
       </Container>
     </section>
     </>

@@ -4,7 +4,7 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  console.log("App component rendered"); // Debug log
+  console.log("App component rendered"); 
   return <Layout />;
 }
 

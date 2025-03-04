@@ -15,7 +15,8 @@ import UserManagement from '../pages/admin/UserManagement';
 import EventManagement from '../pages/admin/EventManagement';
 import EventRegistrationInfo from '../pages/admin/EventRegistrationInfo';
 import Profile from '../pages/Profile';
-
+import BookedEvents from '../pages/admin/BookedEvents';
+import MyEvents from '../pages/MyEvents';
 
 const Routers = () => {
   return (
@@ -31,6 +32,7 @@ const Routers = () => {
       <Route path="/thank-you" element={<ThankYou />} />
       <Route path="/add-events" element={<AddEvent />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/my-events" element={<MyEvents />} />
 
       {/* Admin Panel Routes */}
       <Route path="/admin" element={<Navigate to="/admin/dashboard" />} />
@@ -38,6 +40,7 @@ const Routers = () => {
       <Route path="/admin/users" element={<UserManagement />} />
       <Route path="/admin/events" element={<EventManagement />} />
       <Route path="/admin/event/:id/registrations" element={<EventRegistrationInfo />} />
+      <Route path="/admin/booked-events/:id" element={<BookedEvents />} />
     </Routes>
   );
 };

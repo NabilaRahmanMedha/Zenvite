@@ -22,11 +22,14 @@ Route::get('/users', [UserController::class, 'index']);
 
 
 Route::delete('/users/{id}', [AuthController::class, 'destroy']);
+Route::get('/users/{id}', [UserController::class, 'getUserById']);
 
 Route::delete('events/{id}', [EventController::class, 'destroy']);
 
 Route::post('/bookings', [BookingController::class, 'bookEvent']);
 Route::get('/my-bookings', [BookingController::class, 'userBookings']);
+Route::get('/user-bookings/{user_id}', [BookingController::class, 'userBookings']);
+Route::get('/users/{id}/bookings', [BookingController::class, 'userBookings']);
 
 
 Route::get('/event-registrations/{event_id}', [BookingController::class, 'getEventRegistrations']);

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Booking;
-use App\Models\User;
-use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
@@ -22,49 +20,50 @@ class BookingController extends Controller
             'totalAmount' => 'required|numeric|min:1',
         ]);
 
-        $booking = Booking::create([
-            'user_id' => $request->user_id, 
-            'event_id' => $request->event_id,
-            'full_name' => $request->fullName,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'ticket_number' => $request->ticketNumber,
-            'transaction_id' => $request->transactionId,
-            'total_amount' => $request->totalAmount,
-        ]);
+        // Insert booking record into the database
+        DB::insert("
+            INSERT INTO bookings (user_id, event_id, full_name, email, phone, ticket_number, transaction_id, total_amount, created_at, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())",
+            [
+                $request->user_id,
+                $request->event_id,
+                $request->fullName,
+                $request->email,
+                $request->phone,
+                $request->ticketNumber,
+                $request->transactionId,
+                $request->totalAmount
+            ]
+        );
 
-        return response()->json(['message' => 'Booking successful!', 'booking' => $booking], 201);
+        return response()->json(['message' => 'Booking successful!'], 201);
     }
 
-    public function userBookings(Request $request)
+    public function userBookings($user_id)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
+        // Fetch bookings for the user
+        $bookings = DB::select("
+            SELECT b.id as booking_id, b.user_id, b.event_id, e.eventName as event_name, 
+                   e.address, e.date, e.time 
+            FROM bookings b
+            JOIN events e ON b.event_id = e.id
+            WHERE b.user_id = ?
+        ", [$user_id]);
 
-        $bookings = Booking::where('user_id', $request->user_id)->get();
-        
-        return response()->json(['bookings' => $bookings]);
+        return response()->json(['bookings' => $bookings], 200);
     }
 
     public function getEventRegistrations($event_id)
-{
-    $bookings = Booking::where('event_id', $event_id)
-        ->join('events', 'bookings.event_id', '=', 'events.id') 
-        ->select(
-            'bookings.id as booking_id', 
-            'bookings.user_id', 
-            'bookings.event_id', 
-            'events.eventName as event_name', 
-            'bookings.full_name', 
-            'bookings.email', 
-            'bookings.phone', 
-            'bookings.transaction_id', 
-            'bookings.ticket_number'
-        )
-        ->get();
-    
-    return response()->json(['bookings' => $bookings], 200);
-}
+    {
+        // Fetch registrations for a specific event
+        $bookings = DB::select("
+            SELECT b.id as booking_id, b.user_id, b.event_id, e.eventName as event_name, 
+                   b.full_name, b.email, b.phone, b.transaction_id, b.ticket_number 
+            FROM bookings b
+            JOIN events e ON b.event_id = e.id
+            WHERE b.event_id = ?
+        ", [$event_id]);
 
+        return response()->json(['bookings' => $bookings], 200);
+    }
 }

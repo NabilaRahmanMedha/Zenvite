@@ -6,6 +6,24 @@
     padding: 50px;
     text-align: left;
   }
+
+  .about-us-description {
+    font-size: 1.5rem; /* Adjust the size as per your requirement */
+    color: white; /* Make text white */
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+  
+  .email-link {
+    font-size: 1.8rem; /* Make the email address slightly larger */
+    color: #4e73df; /* A nice blue color for the email link */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .email-link:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  
   
   .team-photo img {
     width: 100%;

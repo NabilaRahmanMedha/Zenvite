@@ -52,8 +52,8 @@ const EventRegistrationInfo = () => {
             <tbody>
               {registrations.length > 0 ? (
                 registrations.map((reg) => (
-                  <tr key={reg.id}>
-                    <td>{reg.id}</td>
+                  <tr key={reg.booking_id}>
+                    <td>{reg.booking_id}</td>
                     <td>{reg.user_id}</td>
                     <td>{reg.event_id}</td>
                     <td>{reg.event_name}</td> 

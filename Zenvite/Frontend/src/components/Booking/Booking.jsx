@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./booking.css";
 import { Form, FormGroup, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
@@ -8,12 +8,15 @@ const Booking = ({ event }) => {
   const { id, ticketPrice } = event;
   const navigate = useNavigate();
 
+  //user info from localStorage
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+
   const [credentials, setCredentials] = useState({
-    fullName: "",
+    fullName: storedUser?.name || "",
+    email: storedUser?.email || "",
     phone: "",
     ticketNumber: 1,
     transactionId: "",
-    email: "",
   });
 
   const handleChange = (e) => {
@@ -25,20 +28,30 @@ const Booking = ({ event }) => {
 
   const totalAmount = Number(ticketPrice) * Number(credentials.ticketNumber);
 
-  // Send Booking Data to the Backend
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/bookings", {
-        event_id: id,
-        fullName: credentials.fullName,
-        email: credentials.email,
-        phone: credentials.phone,
-        ticketNumber: credentials.ticketNumber,
-        transactionId: credentials.transactionId,
-        totalAmount: totalAmount,
-      });
+      const userId = localStorage.getItem("user_id");
+
+      if (!userId) {
+        alert("Please log in first.");
+        return;
+      }
+
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/bookings",
+        {
+          user_id: userId,
+          event_id: id,
+          fullName: credentials.fullName,
+          email: credentials.email,
+          phone: credentials.phone,
+          ticketNumber: credentials.ticketNumber,
+          transactionId: credentials.transactionId,
+          totalAmount: totalAmount,
+        }
+      );
 
       if (response.status === 201) {
         alert("Booking successful!");
@@ -73,6 +86,7 @@ const Booking = ({ event }) => {
               required
               value={credentials.fullName}
               onChange={handleChange}
+              disabled={!!storedUser} 
             />
           </FormGroup>
           <FormGroup>
@@ -83,6 +97,7 @@ const Booking = ({ event }) => {
               required
               value={credentials.email}
               onChange={handleChange}
+              disabled={!!storedUser} 
             />
           </FormGroup>
           <FormGroup>

@@ -8,7 +8,7 @@ import axios from "axios";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
-  const [page, setPage] = useState(1); // Start from page 1 (Laravel default)
+  const [page, setPage] = useState(1); 
   const [pageCount, setPageCount] = useState(0);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Events = () => {
     
 
     fetchEvents();
-  }, [page]); // Dependency ensures it fetches when `page` changes
+  }, [page]); 
 
   return (
     <>
@@ -56,13 +56,13 @@ const Events = () => {
               <p className="text-center w-100">No events available</p>
             )}
 
-            {/* Pagination */}
+
             <Col lg="12">
               <div className="pagination d-flex align-items-center justify-content-center mt-4 gap-3">
                 {[...Array(pageCount).keys()].map((index) => (
                   <span
                     key={index}
-                    onClick={() => setPage(index + 1)} // Ensure correct page selection
+                    onClick={() => setPage(index + 1)} 
                     className={page === index + 1 ? "active__page" : ""}
                   >
                     {index + 1}

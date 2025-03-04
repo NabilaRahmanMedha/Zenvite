@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-// Define initial state
+
 const INITIAL_STATE = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   isFetching: false,
@@ -8,7 +8,8 @@ const INITIAL_STATE = {
 };
 
 
-// Define reducer function
+//AuthReducer manages updates of the authentication state based on dispatched actions 
+// combined with useReducer (for local state management) 
 const AuthReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN_START":
@@ -25,6 +26,7 @@ const AuthReducer = (state, action) => {
 
       localStorage.setItem("user", JSON.stringify(action.payload.user));
       localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("user_id", action.payload.user.id);
 
       return {
         ...state,
@@ -41,6 +43,7 @@ const AuthReducer = (state, action) => {
     case "LOGOUT":
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+      localStorage.removeItem("user_id");
       return {
         ...state,
         user: null,

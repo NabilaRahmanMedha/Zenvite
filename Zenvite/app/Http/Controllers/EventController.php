@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
+    // Store a new event
     public function store(Request $request)
     {
         $request->validate([
@@ -20,12 +21,14 @@ class EventController extends Controller
             'poster' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        // Handle poster upload manually with Storage
         $posterPath = null;
         if ($request->hasFile('poster')) {
             $posterPath = $request->file('poster')->store('posters', 'public');
         }
 
-        $event = Event::create([
+        // Use DB::table to insert
+        $eventId = DB::table('events')->insertGetId([
             'eventName' => $request->eventName,
             'address' => $request->address,
             'ticketPrice' => $request->ticketPrice,
@@ -33,26 +36,43 @@ class EventController extends Controller
             'time' => $request->time,
             'description' => $request->description,
             'poster' => $posterPath,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
+
+        // Fetch the newly created event using DB::table
+        $event = DB::table('events')->where('id', $eventId)->first();
+
+        // Format poster URL manually
+        $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
 
         return response()->json(['message' => 'Event created successfully!', 'event' => $event], 201);
     }
-    
+
+    // Fetch a list of events with pagination and search functionality
     public function index(Request $request)
     {
-        $query = Event::query();
+        $query = DB::table('events');
 
+        // Search functionality
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where('eventName', 'LIKE', "%$search%")
+                  ->orWhere('address', 'LIKE', "%$search%");
+        }
+
+        // Featured events handling
         if ($request->has('featured') && $request->featured == 'true') {
-            // Fetch 8 random featured events
-            $events = $query->inRandomOrder()->limit(8)->get();
+            // Fetch random featured events
+            $events = $query->inRandomOrder()->limit(6)->get();
             foreach ($events as $event) {
                 $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
             }
             return response()->json(['events' => $events], 200);
         }
 
+        // Admin events handling (fetch all events)
         if ($request->has('admin') && $request->admin == 'true') {
-            // Fetch all events for admin (no pagination)
             $events = $query->get();
             foreach ($events as $event) {
                 $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
@@ -60,43 +80,44 @@ class EventController extends Controller
             return response()->json(['events' => $events], 200);
         }
 
-        // Default: Paginated events for normal users
+        // Paginated events for normal users
         $events = $query->paginate(8);
-
-        // Convert poster paths to full URLs
-        $events->getCollection()->transform(function ($event) {
+        foreach ($events as $event) {
             $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
-            return $event;
-        });
+        }
 
         return response()->json($events, 200);
     }
 
-
-    
+    // Fetch a single event by its ID
     public function show($id)
     {
-        $event = Event::find($id);
+        // Fetch event by ID
+        $event = DB::table('events')->where('id', $id)->first();
 
         if (!$event) {
             return response()->json(['message' => 'Event not found'], 404);
         }
 
-        // Append full URL for poster
+        // Format poster URL manually
         $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
 
         return response()->json(['event' => $event], 200);
     }
 
+    // Delete an event by its ID
     public function destroy($id)
     {
-        $event = Event::find($id);
-        
-        if ($event) {
-            $event->delete();
-            return response()->json(['message' => 'Event deleted successfully.']);
+        // Fetch event by ID
+        $event = DB::table('events')->where('id', $id)->first();
+
+        if (!$event) {
+            return response()->json(['message' => 'Event not found.'], 404);
         }
-        
-        return response()->json(['message' => 'Event not found.'], 404);
+
+        // Delete the event
+        DB::table('events')->where('id', $id)->delete();
+
+        return response()->json(['message' => 'Event deleted successfully.']);
     }
 }

@@ -64,7 +64,7 @@ class EventController extends Controller
         // Featured events handling
         if ($request->has('featured') && $request->featured == 'true') {
             // Fetch random featured events
-            $events = $query->inRandomOrder()->limit(6)->get();
+            $events = $query->inRandomOrder()->limit(8)->get();
             foreach ($events as $event) {
                 $event->poster = $event->poster ? url('storage/' . $event->poster) : url('storage/default-event.jpg');
             }

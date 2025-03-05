@@ -45,11 +45,12 @@
   .event-details {
     font-size: 14px;
     color: #7c7c7c;
+    text-align: left; /* Ensure text is aligned to the left */
   }
+
   
   .more-info-btn {
     display: block;
-    text-align: center;
     background-color:var(--secondary-color);
     color: white;
     padding: 10px;
@@ -65,7 +66,6 @@
 
   .delete-btn {
     display: block;
-    text-align: center;
     background-color: #e74c3c; /* Red background for delete */
     color: white;
     padding: 10px;

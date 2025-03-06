@@ -17,6 +17,7 @@ import EventRegistrationInfo from '../pages/admin/EventRegistrationInfo';
 import Profile from '../pages/Profile';
 import BookedEvents from '../pages/admin/BookedEvents';
 import MyEvents from '../pages/MyEvents';
+import Gallery from '../pages/Gallery';
 
 const Routers = () => {
   return (
@@ -33,6 +34,7 @@ const Routers = () => {
       <Route path="/add-events" element={<AddEvent />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/my-events" element={<MyEvents />} />
+      <Route path="/gallery" element={<Gallery />} />
 
       {/* Admin Panel Routes */}
       <Route path="/admin" element={<Navigate to="/admin/dashboard" />} />

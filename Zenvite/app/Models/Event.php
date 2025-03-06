@@ -24,6 +24,11 @@ class Event extends Model
         return $query->where('eventName', 'like', "%{$searchTerm}%")
                      ->orWhere('address', 'like', "%{$searchTerm}%");
     }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
     
 }
 

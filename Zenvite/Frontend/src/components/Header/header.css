@@ -118,6 +118,29 @@ body {
     display: none; 
 }
 
+/* Profile Avatar Styling */
+.profile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  }
+  
+  .profile-avatar:hover {
+    transform: scale(1.1);
+    border-color: #007bff; /* Change border color on hover */
+  }
+  
+
 
 @media (max-width: 768px) {
     .navigation {

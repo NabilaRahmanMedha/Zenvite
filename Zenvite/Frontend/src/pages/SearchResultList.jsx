@@ -15,6 +15,7 @@ const SearchResultList = ({ results, searchPerformed }) => {
           <EventCard key={event.id} event={event} />
         ))}
       </div>
+      {results.length > 0 && <hr className="divider" />}
     </div>
   );
 };

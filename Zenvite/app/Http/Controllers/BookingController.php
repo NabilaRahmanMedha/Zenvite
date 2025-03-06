@@ -41,17 +41,24 @@ class BookingController extends Controller
 
     public function userBookings($user_id)
     {
-        // Fetch bookings for the user
+        // Fetch user bookings along with event poster
         $bookings = DB::select("
-            SELECT b.id as booking_id, b.user_id, b.event_id, e.eventName as event_name, 
-                   e.address, e.date, e.time 
+            SELECT b.id as booking_id, b.user_id, b.event_id, b.ticket_number, b.total_amount, e.eventName as event_name, 
+                   e.address, e.date, e.time, e.poster
             FROM bookings b
             JOIN events e ON b.event_id = e.id
             WHERE b.user_id = ?
         ", [$user_id]);
-
+    
+        // Format poster URL correctly
+        foreach ($bookings as $booking) {
+            $booking->poster = $booking->poster ? url('storage/' . $booking->poster) : url('storage/default-event.jpg');
+        }
+    
         return response()->json(['bookings' => $bookings], 200);
     }
+    
+
 
     public function getEventRegistrations($event_id)
     {
@@ -66,4 +73,20 @@ class BookingController extends Controller
 
         return response()->json(['bookings' => $bookings], 200);
     }
+
+    public function deleteBooking($booking_id)
+    {
+        // Check if booking exists
+        $booking = DB::table('bookings')->where('id', $booking_id)->first();
+
+        if (!$booking) {
+            return response()->json(['message' => 'Booking not found'], 404);
+        }
+
+        // Delete booking from database
+        DB::table('bookings')->where('id', $booking_id)->delete();
+
+        return response()->json(['message' => 'Booking canceled successfully'], 200);
+    }
+
 }

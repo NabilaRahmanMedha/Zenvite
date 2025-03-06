@@ -14,6 +14,7 @@ const AddEvent = () => {
     time: "",
     description: "",
     poster: null,
+    id : ""
   });
 
   const navigate = useNavigate();
@@ -32,8 +33,6 @@ const AddEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-
-  
     formData.append("eventName", eventData.eventName);
     formData.append("address", eventData.address);
     formData.append("ticketPrice", eventData.ticketPrice);
@@ -43,9 +42,7 @@ const AddEvent = () => {
     if (eventData.poster) {
       formData.append("poster", eventData.poster);
     }
-
     try {
-
       const response = await axios.post("http://127.0.0.1:8000/api/events", formData, {
         headers: {
           "Content-Type": "multipart/form-data",

@@ -5,7 +5,7 @@ import EventCard from "../shared/EventCard";
 import SearchBar from "../shared/SearchBar";
 import { Container, Row, Col } from "reactstrap";
 import axios from "axios";
-
+import moment from "moment"; // Import moment.js for date comparison
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [page, setPage] = useState(1); 
@@ -26,11 +26,13 @@ const Events = () => {
         console.error("Error fetching events:", error);
       }
     };
-    
-
     fetchEvents();
   }, [page]); 
-
+    // Get current date
+    const currentDate = moment().format("YYYY-MM-DD");
+  
+    // Filter past events
+    const liveevents = events.filter((event) => moment(event.date).isAfter(currentDate));
   return (
     <>
       <CommonSection title="Upcoming Events!" description="Explore the Universe of Events at Your Fingertips." />
@@ -46,8 +48,8 @@ const Events = () => {
       <section className="pt-0">
         <Container>
           <Row>
-            {events.length > 0 ? (
-              events.map((event) => (
+            {liveevents.length > 0 ? (
+              liveevents.map((event) => (
                 <Col lg="3" className="mb-4" key={event.id}>
                   <EventCard event={event} />
                 </Col>
@@ -76,5 +78,4 @@ const Events = () => {
     </>
   );
 };
-
 export default Events;

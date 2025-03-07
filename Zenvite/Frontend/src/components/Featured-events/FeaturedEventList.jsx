@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import EventCard from "../../shared/EventCard";
 import { Col, Row } from "reactstrap";
 import axios from "axios";
-
+import moment from "moment"; // Import moment.js for date comparison
 const FeaturedEventList = () => {
   const [events, setEvents] = useState([]);
 
@@ -27,11 +27,15 @@ const FeaturedEventList = () => {
 
     fetchEvents();
   }, []);
-
+   // Get current date
+      const currentDate = moment().format("YYYY-MM-DD");
+    
+    // Filter past events
+  const liveevents = events.filter((event) => moment(event.date).isAfter(currentDate));
   return (
     <Row>
-      {events.length > 0 ? (
-        events.map((event) => (
+      {liveevents.length > 0 ? (
+        liveevents.map((event) => (
           <Col lg="3" md="6" sm="12" className="mb-4" key={event.id}>
             <EventCard event={event} />
           </Col>

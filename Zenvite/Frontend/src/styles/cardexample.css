@@ -1,49 +1,90 @@
 .custom-card {
-    width: 18rem;
-    border-radius: 50%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in;
-  }
-  
-  .custom-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .custom-card-image {
-    height: 200px;
-    object-fit: cover;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-  }
-  
-  .custom-card-body {
-    padding: 15px;
-    text-align: center;
-  }
-  
-  .custom-card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #FFF !important;
-  }
-  
-  .custom-card-text {
-    font-size: 0.7rem;
-    color: #BB6BAB;
-    margin-bottom: 10px;
-  }
-  
-  .custom-card-button {
-    background-color: #BB6BAB !important;
-    border: #BB6BAB !important;
-    padding: 6px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin-top: 5px;
-    font-size: 13px !important;
-  }
-  
-  .custom-card-button:hover {
-    background-color: #c52ea7 !important;
-  }
-  
+  width: 18rem;
+  border-radius: 50%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in;
+}
+
+.custom-card:hover {
+  transform: scale(1.05);
+}
+
+.custom-card-image {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.custom-card-body {
+  padding: 15px;
+  text-align: center;
+}
+
+.custom-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #FFF !important;
+}
+
+.custom-card-text {
+  font-size: 0.7rem;
+  color: #BB6BAB;
+  margin-bottom: 10px;
+}
+
+.custom-card-button {
+  background-color: #BB6BAB !important;
+  border: #BB6BAB !important;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-top: 5px;
+  font-size: 13px !important;
+}
+
+.custom-card-button:hover {
+  background-color: #c52ea7 !important;
+}
+
+/* Modal Styling */
+.modal-content{
+  background-color: #111 !important;
+}
+.modal-body{
+  background-color: #111;
+  text-align: center;
+  border-radius: 30px;
+  padding: 0px !important;
+}
+.custom-modal-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.custom-modal-text {
+  font-size: 0.9rem;
+  color: #BB6BAB;
+  margin-bottom: 8px;
+}
+
+.custom-modal-footer {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.custom-modal-close {
+  background-color: #6c757d;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.custom-modal-close:hover {
+  background-color: #5a6268;
+}

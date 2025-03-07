@@ -4,7 +4,7 @@ import {
   CModal, CModalBody, CModalFooter
 } from "@coreui/react";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
-import "../../styles/cardexample.css"; // Ensure this CSS file contains styling
+import "../../styles/cardexample.css";
 
 export const CardExample = ({ event }) => {
   const [visible, setVisible] = useState(false); // Modal visibility state

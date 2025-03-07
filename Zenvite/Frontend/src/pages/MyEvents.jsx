@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button, Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; 
-import "../styles/myEvents.css"; 
+import { useNavigate } from "react-router-dom";
+import { BookingCard1 } from "../components/Card/BookingCard1";
+import "../styles/myEvents.css";
 
 const MyEvents = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1); 
-  const [pageCount, setPageCount] = useState(0); 
+  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,31 +17,25 @@ const MyEvents = () => {
     if (userId) {
       fetchUserBookings(userId);
     } else {
-      navigate("/login"); 
+      navigate("/login");
     }
   }, [page]);
 
   const fetchUserBookings = async (userId) => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/api/users/${userId}/bookings?page=${page}`);
-      setBookings(response.data.bookings);
-      setPageCount(response.data.last_page);
-      setLoading(false);
+      console.log("API Response:", response.data); // Debugging line
+
+      if (response.data && Array.isArray(response.data.bookings)) {
+        setBookings(response.data.bookings);
+        setPageCount(response.data.last_page);
+      } else {
+        console.error("Unexpected API response format:", response.data);
+      }
     } catch (error) {
       console.error("Error fetching user bookings:", error);
+    } finally {
       setLoading(false);
-    }
-  };
-
-  // Function to delete a booking
-  const deleteBooking = async (bookingId) => {
-    if (!window.confirm("Are you sure you want to cancel this booking?")) return;
-
-    try {
-      await axios.delete(`http://127.0.0.1:8000/api/bookings/${bookingId}`);
-      setBookings(bookings.filter((booking) => booking.booking_id !== bookingId));
-    } catch (error) {
-      console.error("Error deleting booking:", error);
     }
   };
 
@@ -58,30 +53,15 @@ const MyEvents = () => {
               <Row>
                 {bookings.length > 0 ? (
                   bookings.map((booking) => (
-                    <Col lg="4" md="6" className="mb-4" key={booking.booking_id}>
-                      <Card className="event-card">
-                        <div className="event-img">
-                          <img 
-                            src={booking.poster} 
-                            alt={booking.event_name} 
-                            onError={(e) => e.target.src = "/default-event.jpg"} 
-                          />
-                        </div>
-                        <CardBody>
-                          <CardTitle tag="h5">{booking.event_name}</CardTitle>
-                          <CardText><strong>Address:</strong> {booking.address}</CardText>
-                          <CardText><strong>Date:</strong> {booking.date} | <strong>Time:</strong> {booking.time}</CardText>
-                          <CardText><strong>Tickets:</strong> {booking.ticket_number}</CardText>
-                          <CardText><strong>Paid Amount:</strong> BDT {booking.total_amount}</CardText>
-                          <Button color="danger" onClick={() => deleteBooking(booking.booking_id)}>
-                            Cancel Booking
-                          </Button>
-                        </CardBody>
-                      </Card>
+                    <Col lg="3" className="mb-4" key={booking.booking_id}>
+                      <BookingCard1
+                        booking={booking}
+                        onDelete={(id) => setBookings(bookings.filter((b) => b.booking_id !== id))}
+                      />
                     </Col>
                   ))
                 ) : (
-                  <p className="no-booking">No events booked yet.</p>
+                  <p className="text-center w-100">No past events available</p>
                 )}
               </Row>
             )}

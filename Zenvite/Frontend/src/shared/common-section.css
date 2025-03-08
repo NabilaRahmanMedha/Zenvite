@@ -27,7 +27,7 @@
 .common__section h1 {
     position: relative;
     z-index: 2; /* gradient overlay */
-    font-size: 3rem;
+    font-size: 2.7rem;
     color: #fff;
     font-weight: 570;
     padding-top: 8rem;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import "../../styles/admin/dashboard.css"
+import { CommonSection } from "../../shared/CommonSection";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -10,6 +11,9 @@ const Dashboard = () => {
   };
 
   return (
+    <>
+    <CommonSection />
+
     <section className="dashboard">
       <div className="container">
         <h2 className="text-center mb-4">Admin Dashboard</h2>
@@ -22,6 +26,7 @@ const Dashboard = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

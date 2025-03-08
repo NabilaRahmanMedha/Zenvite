@@ -38,10 +38,7 @@ class EventController extends Controller
         $filters = $request->all();
         $events = $this->eventService->getEvents($filters);
 
-        return response()->json([
-            'data' => $events->items(), // Extract event data
-            'last_page' => $events->lastPage() // Total pages
-        ], 200);
+        return response()->json(['events' => $events], 200);
     }
 
     public function show($id)

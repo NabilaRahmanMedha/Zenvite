@@ -78,7 +78,7 @@ input[type="file"] {
 }
 
 .form-container .submit-btn:hover {
-    background: rgb(141, 63, 141);
+    background:var(--primary-color);
 }
 
 /* Responsive */

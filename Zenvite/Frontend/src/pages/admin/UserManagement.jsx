@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import "../../styles/admin/user-management.css";
+import { CommonSection } from "../../shared/CommonSection";
 
 
 const UserManagement = () => {
@@ -37,8 +38,10 @@ const UserManagement = () => {
   };
 
   return (
+    <>
+    <CommonSection title="Registered Users" />
     <section className="user-management">
-      <h2>Registered Users</h2>
+      
       <div className="container">
         <div className="table-container">
           <table className="table">
@@ -77,6 +80,7 @@ const UserManagement = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

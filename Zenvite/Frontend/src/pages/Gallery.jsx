@@ -15,10 +15,10 @@ const Gallery = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/api/events?page=${page}`);
-
-        if (response.data && response.data.data) {
-          setEvents(response.data.data);
-          setPageCount(response.data.last_page);
+  
+        if (response.data && response.data.events) {
+          setEvents(response.data.events);  // Corrected data structure
+          setPageCount(response.data.last_page || 0); 
         } else {
           console.error("Unexpected API response:", response.data);
         }
@@ -26,9 +26,10 @@ const Gallery = () => {
         console.error("Error fetching events:", error);
       }
     };
-
+  
     fetchEvents();
   }, [page]);
+  
 
   // Get current date
   const currentDate = moment().format("YYYY-MM-DD");

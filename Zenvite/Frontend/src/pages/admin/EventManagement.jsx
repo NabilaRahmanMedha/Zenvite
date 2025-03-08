@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/admin/event-management.css";
+import { CommonSection } from "../../shared/CommonSection";
 
 const EventManagement = () => {
   const [events, setEvents] = useState([]);
@@ -33,9 +34,12 @@ const EventManagement = () => {
   };
 
   return (
+    <>
+    <CommonSection title="Added Events" />
+    
     <section className="event-management">
       <div className="container">
-        <h2 className="text-center mb-4">Added Events</h2>
+       
         <div className="row">
         {Array.isArray(events) && events.length > 0 ? (
             events.map((event) => (
@@ -77,6 +81,7 @@ const EventManagement = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

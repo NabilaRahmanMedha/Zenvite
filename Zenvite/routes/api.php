@@ -31,6 +31,7 @@ Route::get('/my-bookings', [BookingController::class, 'userBookings']);
 Route::get('/user-bookings/{user_id}', [BookingController::class, 'userBookings']);
 Route::get('/users/{id}/bookings', [BookingController::class, 'userBookings']);
 Route::delete('/bookings/{booking_id}', [BookingController::class, 'deleteBooking']);
+Route::get('/ticket-sales', [BookingController::class, 'getTicketSales']);
 
 
 Route::get('/event-registrations/{event_id}', [BookingController::class, 'getEventRegistrations']);

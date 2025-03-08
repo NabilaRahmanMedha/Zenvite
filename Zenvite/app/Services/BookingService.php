@@ -56,6 +56,26 @@ class BookingService
         return ['bookings' => $bookings];
     }
 
+    public function getTicketSales()
+    {
+        // Fetch all events
+        $events = DB::table('events')->get();
+
+        // Map through events and count the number of bookings (tickets sold)
+        $ticketSales = $events->map(function ($event) {
+            $ticketsSold = DB::table('bookings')
+                ->where('event_id', $event->id)
+                ->sum('ticket_number'); // Sum of ticket_number for each event
+
+            return [
+                'eventName' => $event->eventName, // Assuming 'eventName' is a column in 'events' table
+                'ticketsSold' => $ticketsSold,
+            ];
+        });
+
+        return $ticketSales;
+    }
+
     public function deleteBooking($booking_id)
     {
         $booking = DB::table('bookings')->where('id', $booking_id)->first();

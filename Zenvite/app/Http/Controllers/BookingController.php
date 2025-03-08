@@ -40,6 +40,12 @@ class BookingController extends Controller
         return response()->json($this->bookingService->getEventRegistrations($event_id), 200);
     }
 
+    public function getTicketSales()
+    {
+        $ticketSales = $this->bookingService->getTicketSales();
+        return response()->json($ticketSales, 200);
+    }
+
     public function deleteBooking($booking_id)
     {
         $response = $this->bookingService->deleteBooking($booking_id);

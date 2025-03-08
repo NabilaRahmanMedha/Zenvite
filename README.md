@@ -101,6 +101,15 @@ Before getting started, ensure the following tools are installed:
      npm install coreui
      npm install dayjs
      npm install moment
+     npm install bootstrap
+     npm install react
+     npm install react-dom
+     npm install react-responsive-masonry
+     npm install react-router-dom
+     npm install reactstrap
+     npm install recharts
+     npm install remixicon
+     npm install slick-carousel
      ```
    - For **Laravel Backend**:
      ```bash

@@ -43,7 +43,7 @@ class EventService
         } elseif (isset($filters['admin']) && $filters['admin'] == 'true') {
             $events = $query->get();
         } else {
-            $events = $query->paginate(8);
+            $events = $query->get();
         }
 
         foreach ($events as $event) {

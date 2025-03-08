@@ -7,7 +7,6 @@
 .dashboard h2{
     color: aliceblue;
     padding-bottom: 40px;
- 
 }
 
 .add-events-btn {
@@ -26,8 +25,10 @@
     background-color: var(--primary-color); 
 }
 
-
-.text-center {
+.chart-container .text-center h3 {
+    color: white;  
+}
+.text-center h3{
     text-align: center;
     margin-top: 20px;
 }
@@ -41,6 +42,6 @@
 }
 
 .chart-container h3 {
-    color: white;
+    color: white ;
     margin-bottom: 20px;
 }

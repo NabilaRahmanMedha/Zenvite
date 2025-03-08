@@ -76,7 +76,7 @@ ul {
 }
 
 .secondary__btn a:hover {
-  color: inherit;
+  color: var(--primary-color);
 }
 
 .section__subtitle {

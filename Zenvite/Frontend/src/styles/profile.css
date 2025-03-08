@@ -20,12 +20,12 @@
   border-radius: 50%;
   padding: 5px;
   margin-top: 40px;
+  background-color: #FFF;
 }
 .profile-picture {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 1px solid black;
   object-fit: cover;
 }
 .Profile-card{

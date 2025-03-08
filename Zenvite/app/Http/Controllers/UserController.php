@@ -2,26 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function index()
     {
-        $users = DB::select("SELECT * FROM users ORDER BY id ASC");
+        $users = $this->userService->getAllUsers();
 
         return response()->json(['users' => $users], 200);
     }
 
     public function getUserById($id)
     {
-        $user = DB::select("SELECT * FROM users WHERE id = ?", [$id]);
+        $user = $this->userService->getUserById($id);
 
-        if (empty($user)) {
+        if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
 
-        return response()->json(['user' => $user[0]]);
+        return response()->json(['user' => $user]);
     }
 }

@@ -64,26 +64,30 @@
 /* Container for buttons */
 .buttons-container {
     display: flex;
-    gap: 10px; /* Adjust the space between buttons */
+    gap: 20px; /* Adjust the space between buttons */
+    align-items: center;
   }
   
   
   /* Specific styles for the delete button */
   .delete-btn {
-    background-color: #ff3654 !important; /* Red background for Delete button */
+    background-color: var(--secondary-color) !important; /* Red background for Delete button */
   }
   
   .delete-btn:hover {
-    background-color: #af205e !important; /* Darker red when hovered */
+    background-color: var(--primary-color) !important; /* Darker red when hovered */
   }
   
   /* Specific styles for the booked events button */
   .booked-events-btn {
-    background-color: #9e62c6 !important; /* Green background for Booked Events button */
+    height: 100%;
+    padding: 10px;
+    border-radius: 0.5rem;
+    background-color: #d1c1d0 !important; /* Green background for Booked Events button */
   }
   
   .booked-events-btn:hover {
-    background-color: #7321a9 !important; /* Darker green when hovered */
+    background-color: #fffeff !important; /* Darker green when hovered */
   }
   
   

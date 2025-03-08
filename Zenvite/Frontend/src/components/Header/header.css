@@ -137,7 +137,7 @@ body {
   
   .profile-avatar:hover {
     transform: scale(1.1);
-    border-color: #007bff; /* Change border color on hover */
+    border-color: #ffffff; /* Change border color on hover */
   }
   
 

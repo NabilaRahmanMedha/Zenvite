@@ -5,20 +5,19 @@ import EventCard from "../shared/EventCard";
 import SearchBar from "../shared/SearchBar";
 import { Container, Row, Col } from "reactstrap";
 import axios from "axios";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
-  const [page, setPage] = useState(1); 
-  const [pageCount, setPageCount] = useState(0);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/events?page=${page}`);
-        if (response.data && response.data.data) {
-          setEvents(response.data.data);
-          setPageCount(response.data.last_page);
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/events`
+        );
+        if (response.data && response.data.events) {
+          setEvents(response.data.events);
         } else {
           console.error("Unexpected API response:", response.data);
         }
@@ -27,13 +26,15 @@ const Events = () => {
       }
     };
     fetchEvents();
-  }, [page, pageCount]); 
-   
-    // Get current date
-    const currentDate = dayjs().format("YYYY-MM-DD");
-  
-    // Filter past events
-    const liveevents = events.filter(event => dayjs(event.date, "YYYY-MM-DD").isAfter(currentDate));
+  }, []); // Only run on component mount
+
+  // Get current date
+  const currentDate = dayjs().format("YYYY-MM-DD");
+
+  // Filter past events
+  const liveevents = events.filter(
+    (event) => dayjs(event.date, "YYYY-MM-DD").isAfter(currentDate)
+  );
 
   return (
     <>
@@ -59,25 +60,11 @@ const Events = () => {
             ) : (
               <p className="text-center w-100">No events available</p>
             )}
-
-
-            <Col lg="12">
-              <div className="pagination d-flex align-items-center justify-content-center mt-4 gap-3">
-                {[...Array(pageCount).keys()].map((index) => (
-                  <span
-                    key={index}
-                    onClick={() => setPage(index + 1)} 
-                    className={page === index + 1 ? "active__page" : ""}
-                  >
-                    {index + 1}
-                  </span>
-                ))}
-              </div>
-            </Col>
           </Row>
         </Container>
       </section>
     </>
   );
 };
+
 export default Events;

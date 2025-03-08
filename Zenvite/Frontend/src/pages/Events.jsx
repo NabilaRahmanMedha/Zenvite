@@ -15,7 +15,6 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/api/events?page=${page}`);
-        
         if (response.data && response.data.data) {
           setEvents(response.data.data);
           setPageCount(response.data.last_page);
@@ -27,12 +26,14 @@ const Events = () => {
       }
     };
     fetchEvents();
-  }, [page]); 
+  }, [page, pageCount]); // <-- Ensure pageCount updates correctly
+   
     // Get current date
     const currentDate = moment().format("YYYY-MM-DD");
   
     // Filter past events
-    const liveevents = events.filter((event) => moment(event.date).isAfter(currentDate));
+    const liveevents = events.filter(event => moment(event.date, "YYYY-MM-DD").isAfter(currentDate));
+
   return (
     <>
       <CommonSection title="Upcoming Events!" description="Explore the Universe of Events at Your Fingertips." />

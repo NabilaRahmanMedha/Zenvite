@@ -46,7 +46,7 @@ const Profile = () => {
               <Card className="profile-card text-center">
                 <div className="profile-image-container">
                   <img
-                    src="https://img.freepik.com/free-vector/young-man-with-glasses-avatar_1308-175763.jpg?t=st=1741019187~exp=1741022787~hmac=f08c8bf8dfa07af43fbd6b05feb2f2bb4a57e9e5e780255717b6152fcac4c263&w=740"
+                    src="https://cdn-icons-png.flaticon.com/512/1683/1683692.png"
                     className="profile-picture"
                     alt="User Avatar"
                   />

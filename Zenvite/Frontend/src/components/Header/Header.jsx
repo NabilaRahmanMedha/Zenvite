@@ -4,7 +4,7 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import logo from '../../assets/images/logo.png';
 import "./header.css";
-import userIcon from '../../assets/images/user-blue-gradient.png'; 
+
 
 const nav__links = [
   { path: '/home', display: 'Home' },
@@ -55,7 +55,7 @@ const Header = () => {
                     {/* Profile Icon */}
                     <div className="profile-icon" onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>
                       <img 
-                        src={userIcon}
+                        src="https://cdn-icons-png.flaticon.com/512/18388/18388692.png"
                         alt="Profile" 
                         className="profile-avatar"
                       />

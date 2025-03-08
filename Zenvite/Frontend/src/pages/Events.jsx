@@ -5,7 +5,7 @@ import EventCard from "../shared/EventCard";
 import SearchBar from "../shared/SearchBar";
 import { Container, Row, Col } from "reactstrap";
 import axios from "axios";
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -27,13 +27,13 @@ const Events = () => {
       }
     };
     fetchEvents();
-  }, [page, pageCount]); // <-- Ensure pageCount updates correctly
+  }, [page, pageCount]); 
    
     // Get current date
-    const currentDate = moment().format("YYYY-MM-DD");
+    const currentDate = dayjs().format("YYYY-MM-DD");
   
     // Filter past events
-    const liveevents = events.filter(event => moment(event.date, "YYYY-MM-DD").isAfter(currentDate));
+    const liveevents = events.filter(event => dayjs(event.date, "YYYY-MM-DD").isAfter(currentDate));
 
   return (
     <>

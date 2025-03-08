@@ -1,6 +1,6 @@
 /* Ensure styles are applied */
 .user-management {
-    padding: 120px 0;
+  
     background-color: black !important;
 }
 
@@ -9,7 +9,7 @@
     width: 100%;
     max-width: 900px;
     margin: 50px auto;
-    padding: 20px;
+    
     background-color: black !important;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -71,23 +71,24 @@
   
   /* Specific styles for the delete button */
   .delete-btn {
-    background-color: var(--secondary-color) !important; /* Red background for Delete button */
+    background-color: rgb(243, 105, 123) !important; /* Red background for Delete button */
   }
   
   .delete-btn:hover {
-    background-color: var(--primary-color) !important; /* Darker red when hovered */
+    background-color: rgb(192, 47, 66) !important; /* Darker red when hovered */
   }
   
   /* Specific styles for the booked events button */
   .booked-events-btn {
     height: 100%;
     padding: 10px;
-    border-radius: 0.5rem;
-    background-color: #d1c1d0 !important; /* Green background for Booked Events button */
+    border-radius: 0.8rem;
+    background-color: var(--secondary-color) !important; /* Green background for Booked Events button */
+    color: #fff;
   }
   
   .booked-events-btn:hover {
-    background-color: #fffeff !important; /* Darker green when hovered */
+    background-color: var(--primary-color) !important; /* Darker green when hovered */
   }
   
   

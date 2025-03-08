@@ -5,7 +5,8 @@ import EventCard from "../shared/EventCard";
 import SearchBar from "../shared/SearchBar";
 import { Container, Row, Col } from "reactstrap";
 import axios from "axios";
-import moment from "moment"; // Import moment.js for date comparison
+import moment from 'moment';
+
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [page, setPage] = useState(1); 

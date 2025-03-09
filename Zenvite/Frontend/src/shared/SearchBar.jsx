@@ -4,13 +4,13 @@ import './search-bar.css';
 import { Col, Form, FormGroup } from 'reactstrap';
 import SearchResultList from "../pages/SearchResultList";
 
-
 const SearchBar = () => {
   const eventNameRef = useRef('');
   const addressRef = useRef('');
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchPerformed, setSearchPerformed] = useState(false); // Track if search has been performed
+  const [pageCount, setPageCount] = useState(0);  // Add pageCount state
 
   const searchHandler = async (e) => {
     e.preventDefault();
@@ -23,14 +23,20 @@ const SearchBar = () => {
     }
 
     setLoading(true);
-    setSearchPerformed(true); // Mark that search has been performed
+    setSearchPerformed(true);
 
     try {
       const response = await axios.get('http://127.0.0.1:8000/api/events', {
         params: { search: eventName || address },
       });
 
-      setSearchResults(response.data.data);
+      console.log('API Response:', response.data);  
+
+      const eventData = response.data.events || [];  
+      const totalPages = response.data.pageCount || 0;  
+
+      setSearchResults(eventData);  
+      setPageCount(totalPages);  
     } catch (error) {
       console.error('Error fetching events:', error);
       alert('Something went wrong. Please try again.');
@@ -66,9 +72,9 @@ const SearchBar = () => {
       </div>
 
       {loading && <div>Loading...</div>}
-      
-      {/* Display Search Results only if search has been performed */}
-      <SearchResultList results={searchResults} searchPerformed={searchPerformed} />
+
+      {/* Display Search Results only when performed */}
+      <SearchResultList results={searchResults} searchPerformed={searchPerformed} pageCount={pageCount} />
     </Col>
   );
 };

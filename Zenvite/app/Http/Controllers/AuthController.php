@@ -2,37 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AuthService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use App\Models\User;
 
 class AuthController extends Controller
 {
-    // User Registration
+    protected $authService;
+
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+    
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'userName' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
+        $response = $this->authService->register($request->all());
 
-        if ($validator->fails()) {
-            return response()->json(['message' => $validator->errors()], 400);
+        if (isset($response['error'])) {
+            return response()->json(['message' => $response['error']], 400);
         }
 
-        $user = User::create([
-            'name' => $request->userName,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return response()->json(['message' => 'User registered successfully'], 201);
+        return response()->json($response, 201);
     }
 
-    // User Login
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -40,40 +32,28 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('email', $credentials['email'])->first();
+        $response = $this->authService->login($credentials);
 
-        // Check if user exists and password is correct
-        if (!$user || !Hash::check($credentials['password'], $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+        if (isset($response['error'])) {
+            return response()->json(['message' => $response['error']], 401);
         }
 
-        // Generate Sanctum token
-        $token = $user->createToken('authToken')->plainTextToken;
-
-        return response()->json([
-            'message' => 'Login successful',
-            'token' => $token,
-            'user' => $user
-        ]);
+        return response()->json($response);
     }
-    // User Logout
+
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Logged out successfully']);
+        return response()->json($this->authService->logout($request));
     }
 
     public function destroy($id)
     {
-        $user = User::find($id);
+        $response = $this->authService->destroy($id);
 
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
+        if (isset($response['error'])) {
+            return response()->json(['message' => $response['error']], 404);
         }
 
-        $user->delete();
-
-        return response()->json(['message' => 'User deleted successfully'], 200);
+        return response()->json($response);
     }
-
 }

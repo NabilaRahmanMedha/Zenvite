@@ -7,8 +7,14 @@ const About = () => {
   return (
     <>
       <CommonSection 
-        title={"About us"}
-        description="Explore the Universe of Events at Your Fingertips." 
+        title={"About Us"} 
+        description={
+          <>
+            Explore the Universe of Events at Your Fingertips. <br />
+            <strong>Email us your event details to add your events at: </strong> 
+            <a href="mailto:zenvite@gmail.com">zenvite@gmail.com</a>
+          </>
+        }      
       />
       <section className="about-container">
         <div className="team-photo">

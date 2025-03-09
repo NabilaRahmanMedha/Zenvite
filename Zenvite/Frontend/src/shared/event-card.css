@@ -7,12 +7,12 @@
 .card{
     border: none !important;
     box-shadow: rgba(238, 225, 225, 0.2) 2px 0px 4px 2px;
-    background-color: rgb(29, 29, 29) !important; /* Ensure background color is black */
+    background-color: rgb(29, 29, 29) !important; /* background color is black */
 }
 
 .event__img{
     position: relative;
-    background-color: var(--black)0 !important; /* Ensure background color is black */
+    background-color: var(--black)0 !important; 
 }
 .event__img span{
     position: absolute;

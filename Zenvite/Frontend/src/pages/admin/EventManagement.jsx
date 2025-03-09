@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/admin/event-management.css";
+import { CommonSection } from "../../shared/CommonSection";
 
 const EventManagement = () => {
   const [events, setEvents] = useState([]);
@@ -11,8 +12,8 @@ const EventManagement = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/api/events?admin=true");
-        // Extract the correct array of events
-        setEvents(response.data.events || []); // Handle both possible formats
+        // Extracts the array of events
+        setEvents(response.data.events || []);
       } catch (error) {
         console.error("Error fetching events:", error);
       }
@@ -23,7 +24,7 @@ const EventManagement = () => {
 
   const deleteEvent = async (eventId) => {
     try {
-      // Send delete request to backend
+      //delete request to backend
       await axios.delete(`http://127.0.0.1:8000/api/events/${eventId}`);
       // Remove event from frontend state
       setEvents(events.filter((event) => event.id !== eventId));
@@ -33,9 +34,12 @@ const EventManagement = () => {
   };
 
   return (
+    <>
+    <CommonSection title="Added Events" />
+    
     <section className="event-management">
       <div className="container">
-        <h2 className="text-center mb-4">Added Events</h2>
+       
         <div className="row">
         {Array.isArray(events) && events.length > 0 ? (
             events.map((event) => (
@@ -77,6 +81,7 @@ const EventManagement = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

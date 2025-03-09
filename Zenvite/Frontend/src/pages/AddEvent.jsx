@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios for API calls
+import axios from "axios"; 
 import "../styles/addEvent.css";
 import { CommonSection } from "../shared/CommonSection";
 
@@ -14,27 +14,25 @@ const AddEvent = () => {
     time: "",
     description: "",
     poster: null,
+    id : ""
   });
 
   const navigate = useNavigate();
 
-  // Handle input change
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setEventData((prev) => ({ ...prev, [id]: value }));
   };
 
-  // Handle file upload
+
   const handleFileChange = (e) => {
     setEventData((prev) => ({ ...prev, poster: e.target.files[0] }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-
-    // Append data to FormData (required for file upload)
     formData.append("eventName", eventData.eventName);
     formData.append("address", eventData.address);
     formData.append("ticketPrice", eventData.ticketPrice);
@@ -44,9 +42,7 @@ const AddEvent = () => {
     if (eventData.poster) {
       formData.append("poster", eventData.poster);
     }
-
     try {
-      // Make API request to Laravel backend
       const response = await axios.post("http://127.0.0.1:8000/api/events", formData, {
         headers: {
           "Content-Type": "multipart/form-data",

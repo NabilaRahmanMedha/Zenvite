@@ -8,7 +8,7 @@
     margin-top: 50px;
     background: var(--black);
     backdrop-filter: blur(10px);
-    
+    margin-bottom: 30px;
 }
 
 .form__group span{

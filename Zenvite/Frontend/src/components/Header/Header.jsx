@@ -5,6 +5,7 @@ import { AuthContext } from '../../context/AuthContext';
 import logo from '../../assets/images/logo.png';
 import "./header.css";
 
+
 const nav__links = [
   { path: '/home', display: 'Home' },
   { path: '/events', display: 'Events' },
@@ -46,13 +47,25 @@ const Header = () => {
               </ul>
             </div>
 
-            {/* ========== Right Side (Login/Logout Buttons) ========= */}
+            {/* ========== Right Side (Profile & Logout) ========= */}
             <div className="nav__right d-flex align-items-center gap-4">
               <div className="nav__btns d-flex align-items-center gap-4">
                 {user ? (
-                  <Button className="btn secondary__btn" onClick={handleLogout}>
-                    <Link to='/login'>Logout</Link>
-                  </Button>
+                  <>
+                    {/* Profile Icon */}
+                    <div className="profile-icon" onClick={() => navigate('/profile')} style={{ cursor: 'pointer' }}>
+                      <img 
+                        src="https://cdn-icons-png.flaticon.com/512/18388/18388692.png"
+                        alt="Profile" 
+                        className="profile-avatar"
+                      />
+                    </div>
+
+                    {/* Logout Button */}
+                    <Button className="btn secondary__btn" onClick={handleLogout}>
+                      <Link to='/login'>Logout</Link>
+                    </Button>
+                  </>
                 ) : (
                   <>
                     <Button className="btn secondary__btn">

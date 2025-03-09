@@ -1,53 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import "../../styles/admin/event-registration.css";
-
-// Sample static registration data with transactionId and ticketNumber as quantity (integer)
-const registrations = [
-  { id: 1, eventId: "01", name: "John Doe", email: "john@example.com", phone: "123-456-7890", transactionId: "TXN12345", ticketNumber: 2 },
-  { id: 2, eventId: "01", name: "Jane Smith", email: "jane@example.com", phone: "987-654-3210", transactionId: "TXN12346", ticketNumber: 1 },
-  { id: 3, eventId: "02", name: "Alice Johnson", email: "alice@example.com", phone: "456-789-0123", transactionId: "TXN12347", ticketNumber: 3 },
-];
 
 const EventRegistrationInfo = () => {
   const { id } = useParams();
-  const eventRegistrations = registrations.filter(reg => reg.eventId === id);
+  const [registrations, setRegistrations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchRegistrations = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/event-registrations/${id}`);
+        setRegistrations(response.data.bookings); 
+      } catch (err) {
+        setError("Failed to load registrations.");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRegistrations();
+  }, [id]);
 
   return (
     <section>
-    <div className="registration-container">
-      <h2>Registrations info</h2>
-      <table className="registration-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Transaction ID</th>
-            <th>Ticket Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {eventRegistrations.length > 0 ? (
-            eventRegistrations.map((reg) => (
-              <tr key={reg.id}>
-                <td>{reg.id}</td>
-                <td>{reg.name}</td>
-                <td>{reg.email}</td>
-                <td>{reg.phone}</td>
-                <td>{reg.transactionId}</td>
-                <td>{reg.ticketNumber}</td>
+      <div className="registration-container">
+        <h2>Registrations Info</h2>
+
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p className="error">{error}</p>
+        ) : (
+          <table className="registration-table">
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>User ID</th>
+                <th>Event ID</th>
+                <th>Event Name</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Transaction ID</th>
+                <th>Ticket Quantity</th>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="6" className="no-data">No registrations found.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+            </thead>
+            <tbody>
+              {registrations.length > 0 ? (
+                registrations.map((reg) => (
+                  <tr key={reg.booking_id}>
+                    <td>{reg.booking_id}</td>
+                    <td>{reg.user_id}</td>
+                    <td>{reg.event_id}</td>
+                    <td>{reg.event_name}</td> 
+                    <td>{reg.full_name}</td>
+                    <td>{reg.email}</td>
+                    <td>{reg.phone}</td>
+                    <td>{reg.transaction_id}</td>
+                    <td>{reg.ticket_number}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="9" className="no-data">No registrations found.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        )}
+      </div>
     </section>
   );
 };

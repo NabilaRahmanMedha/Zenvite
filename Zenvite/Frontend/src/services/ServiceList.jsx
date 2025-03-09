@@ -28,11 +28,11 @@ const serviceData=[
 const ServiceList = () => {
   return (
   <>
-  {
-    serviceData.map((item,index)=>(<Col lg='3' key={index}>
-        <ServiceCard item={item}/>
-        </Col>))
-  }
+    {
+        serviceData.map((item,index)=>(<Col lg='3' key={index}>
+            <ServiceCard item={item}/>
+            </Col>))
+    }
   </>
   );
 };

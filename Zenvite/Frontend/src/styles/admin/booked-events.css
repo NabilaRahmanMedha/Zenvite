@@ -1,0 +1,51 @@
+.registration-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.registration-container h2 {
+    text-align: center;
+    font-size: 40px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+
+.registration-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #444;
+}
+
+.registration-table th, .registration-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.registration-table th {
+    background-color: #555;
+    font-weight: bold;
+}
+
+.registration-table td {
+    background-color: #444;
+}
+
+.registration-table tr:hover {
+    background-color: #666;
+}
+
+.no-data {
+    text-align: center;
+    font-size: 18px;
+    color: #ddd;
+    padding: 20px 0;
+}

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import "../../styles/admin/user-management.css";
+import { CommonSection } from "../../shared/CommonSection";
+
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate(); // Initialize navigation
 
   useEffect(() => {
     fetchUsers();
@@ -29,12 +33,16 @@ const UserManagement = () => {
     }
   };
 
+  const handleBookedEvents = (userId) => {
+    navigate(`/admin/bookings/${userId}`); // Navigate to user's bookings page
+  };
+
   return (
+    <>
+    <CommonSection title="Registered Users" />
     <section className="user-management">
+      
       <div className="container">
-        {
-            
-        }
         <div className="table-container">
           <table className="table">
             <thead>
@@ -55,12 +63,10 @@ const UserManagement = () => {
                     <td>{user.email}</td>
                     <td>{new Date(user.created_at).toLocaleDateString()}</td>
                     <td>
-                      <button
-                        className="delete-btn"
-                        onClick={() => handleDelete(user.id)}
-                      >
-                        Delete
-                      </button>
+                      <div className="buttons-container">
+                        <button className="common-btn delete-btn" onClick={() => handleDelete(user.id)}>Delete</button>
+                        <button className="common-btn booked-events-btn" onClick={() => navigate(`/admin/booked-events/${user.id}`)}>Booked Events</button>
+                      </div>
                     </td>
                   </tr>
                 ))
@@ -74,6 +80,7 @@ const UserManagement = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

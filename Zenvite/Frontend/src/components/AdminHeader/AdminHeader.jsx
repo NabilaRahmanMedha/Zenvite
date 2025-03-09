@@ -29,15 +29,13 @@ const AdminHeader = () => {
                   <li className="nav__item" key={index}>
                     <NavLink 
                       to={item.path} 
-                      className={({ isActive }) => (isActive ? "active__link" : "")}
-                    >
+                      className={({ isActive }) => (isActive ? "active__link" : "")}>
                       {item.display}
                     </NavLink>
                   </li>
                 ))}
               </ul>
             </div>
-
           </div>
         </Row>
       </Container>
